@@ -3,4 +3,8 @@
 __pycache__/
 venv/
 blank_patch.syx
-
+data/all_patches.syx
+data/big_space.syx
+data/d_tones.syx
+data/haunted_hearts.syx
+data/rtfm.syx
