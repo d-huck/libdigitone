@@ -25,6 +25,10 @@ class Sound:
         self.eom = patch[int(0x14e):]
 
     def tag_list(self):
+        """
+
+        :return: list of tags associated with the patch
+        """
         tag_msg = b''.join(self.tags[0:1] + self.tags[2:]).decode('utf-8')
         _tags = []
 
@@ -39,6 +43,10 @@ class Sound:
     # TODO: Ensure that parameter location lists are from least to greatest byte location
 
     def param_list(self):
+        """
+
+        :return: human readable strings of the parameter values
+        """
         for para in PARAM:
             if len(PARAM_LOOK[para]) > 4:
                 param_data = b''
@@ -50,6 +58,10 @@ class Sound:
             logging.debug('{}: {}'.format(para, param_data))
 
     def param_to_dict(self):
+        """
+
+        :return: dictionary of the parameter values
+        """
         param_data = {}
         for para in PARAM:
             if len(PARAM_LOOK[para]) > 4:
@@ -61,9 +73,18 @@ class Sound:
         return param_data
 
     def param(self, parameter):
+        """
+
+        :param parameter: which parameter to retrieve a value from
+        :return: the value of an individual parameter
+        """
         return self.data[int(PARAM_LOOK[parameter], 16) - int(0x29)]
 
     def name_to_string(self):
+        """
+
+        :return: the name of a patch as a human readable string
+        """
         name = unhexlify(b''.join(self.name)).decode('utf-8').strip('\x00')
         return name
 
