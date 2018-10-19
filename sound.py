@@ -39,13 +39,12 @@ class Sound:
         name = unhexlify(b''.join(self.name)).decode('utf-8').strip('\x00')
         return name
 
-
 if __name__ == '__main__':
     with open('blank_patch.syx', 'rb') as sysex:
         patches = hexlify(sysex.read())
         patch = Sound(patches)
-        print('Prefix:  {}'.format(patch.prefix))
-        print('Tags:    {}'.format(patch.tag_list()))
+        # print('Prefix:  {}'.format(patch.prefix))
         print('Name:    {}'.format(patch.name_to_string()))
+        print('Tags:    {}'.format(patch.tag_list()))
         print('Data:    {}'.format(patch.data))
         print('EOM:     {}'.format(patch.eom))

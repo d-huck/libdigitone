@@ -5,121 +5,123 @@ TAGS = (
         'MINE', 'FAV'
        )
 
-TAG_LOOKUP = {  '0': {
-                      b'1': [TAGS[23]],
-                      b'2': [TAGS[31]],
-                      b'3': [TAGS[23], TAGS[31]]
-                      },
-                '1': {
-                      b'4': [TAGS[7]],
-                      b'8': [TAGS[15]],
-                      b'c': [TAGS[7], TAGS[15]]
-                      },
-                '2': {
-                      b'1': [TAGS[28]],
-                      b'2': [TAGS[29]],
-                      b'3': [TAGS[28], TAGS[29]],
-                      b'4': [TAGS[30]],
-                      b'5': [TAGS[30], TAGS[28]],
-                      b'6': [TAGS[29], TAGS[30]],
-                      b'7': [TAGS[28], TAGS[29], TAGS[30]]
-                     },
-                '3': {
-                      b'1': [TAGS[24]],
-                      b'2': [TAGS[25]],
-                      b'3': [TAGS[24], TAGS[25]],
-                      b'4': [TAGS[26]],
-                      b'5': [TAGS[24], TAGS[26]],
-                      b'6': [TAGS[25], TAGS[26]],
-                      b'7': [TAGS[24], TAGS[25], TAGS[26]],
-                      b'8': [TAGS[27]],
-                      b'9': [TAGS[24], TAGS[27]],
-                      b'a': [TAGS[25], TAGS[27]],
-                      b'b': [TAGS[24], TAGS[25], TAGS[27]],
-                      b'c': [TAGS[26], TAGS[27]],
-                      b'd': [TAGS[24], TAGS[25], TAGS[27]],
-                      b'e': [TAGS[24], TAGS[26], TAGS[27]],
-                      b'f': [TAGS[24], TAGS[25], TAGS[26], TAGS[27]]
-                     },
-                '4': {
-                      b'1': [TAGS[20]],
-                      b'2': [TAGS[21]],
-                      b'3': [TAGS[20], TAGS[21]],
-                      b'4': [TAGS[22]],
-                      b'5': [TAGS[20], TAGS[22]],
-                      b'6': [TAGS[21], TAGS[22]],
-                      b'7': [TAGS[20], TAGS[21], TAGS[22]]
-                     },
-                '5': {
-                      b'1': [TAGS[16]],
-                      b'2': [TAGS[17]],
-                      b'3': [TAGS[16], TAGS[17]],
-                      b'4': [TAGS[18]],
-                      b'5': [TAGS[16], TAGS[18]],
-                      b'6': [TAGS[25], TAGS[26]],
-                      b'7': [TAGS[16], TAGS[17], TAGS[18]],
-                      b'8': [TAGS[19]],
-                      b'9': [TAGS[16], TAGS[19]],
-                      b'a': [TAGS[17], TAGS[19]],
-                      b'b': [TAGS[16], TAGS[17], TAGS[19]],
-                      b'c': [TAGS[18], TAGS[19]],
-                      b'd': [TAGS[16], TAGS[17], TAGS[19]],
-                      b'e': [TAGS[16], TAGS[18], TAGS[19]],
-                      b'f': [TAGS[16], TAGS[17], TAGS[18], TAGS[19]]
-                     },
-                '6': {
-                      b'1': [TAGS[12]],
-                      b'2': [TAGS[13]],
-                      b'3': [TAGS[12], TAGS[13]],
-                      b'4': [TAGS[14]],
-                      b'5': [TAGS[12], TAGS[14]],
-                      b'6': [TAGS[13], TAGS[14]],
-                      b'7': [TAGS[12], TAGS[13], TAGS[14]]
-                     },
-                '7': {
-                      b'1': [TAGS[8]],
-                      b'2': [TAGS[9]],
-                      b'3': [TAGS[8], TAGS[9]],
-                      b'4': [TAGS[10]],
-                      b'5': [TAGS[8], TAGS[10]],
-                      b'6': [TAGS[25], TAGS[26]],
-                      b'7': [TAGS[8], TAGS[9], TAGS[10]],
-                      b'8': [TAGS[11]],
-                      b'9': [TAGS[8], TAGS[11]],
-                      b'a': [TAGS[9], TAGS[11]],
-                      b'b': [TAGS[8], TAGS[9], TAGS[11]],
-                      b'c': [TAGS[10], TAGS[11]],
-                      b'd': [TAGS[8], TAGS[9], TAGS[11]],
-                      b'e': [TAGS[8], TAGS[10], TAGS[11]],
-                      b'f': [TAGS[8], TAGS[9], TAGS[10], TAGS[11]]
-                     },
-                '8': {
-                      b'1': [TAGS[4]],
-                      b'2': [TAGS[5]],
-                      b'3': [TAGS[4], TAGS[5]],
-                      b'4': [TAGS[6]],
-                      b'5': [TAGS[4], TAGS[6]],
-                      b'6': [TAGS[5], TAGS[6]],
-                      b'7': [TAGS[4], TAGS[5], TAGS[6]]
-                     },
-                '9': {
-                      b'1': [TAGS[0]],
-                      b'2': [TAGS[1]],
-                      b'3': [TAGS[0], TAGS[1]],
-                      b'4': [TAGS[2]],
-                      b'5': [TAGS[0], TAGS[2]],
-                      b'6': [TAGS[25], TAGS[26]],
-                      b'7': [TAGS[0], TAGS[1], TAGS[2]],
-                      b'8': [TAGS[3]],
-                      b'9': [TAGS[0], TAGS[3]],
-                      b'a': [TAGS[1], TAGS[3]],
-                      b'b': [TAGS[0], TAGS[1], TAGS[3]],
-                      b'c': [TAGS[2], TAGS[3]],
-                      b'd': [TAGS[0], TAGS[1], TAGS[3]],
-                      b'e': [TAGS[0], TAGS[2], TAGS[3]],
-                      b'f': [TAGS[0], TAGS[1], TAGS[2], TAGS[3]]
+TAG_LOOKUP = {
+            '0': {
+                  b'1': [TAGS[23]],
+                  b'2': [TAGS[31]],
+                  b'3': [TAGS[23], TAGS[31]]
+                 },
+            '1': {
+                  b'4': [TAGS[7]],
+                  b'8': [TAGS[15]],
+                  b'c': [TAGS[7], TAGS[15]]
+                 },
+            '2': {
+                  b'1': [TAGS[28]],
+                  b'2': [TAGS[29]],
+                  b'3': [TAGS[28], TAGS[29]],
+                  b'4': [TAGS[30]],
+                  b'5': [TAGS[30], TAGS[28]],
+                  b'6': [TAGS[29], TAGS[30]],
+                  b'7': [TAGS[28], TAGS[29], TAGS[30]]
+                 },
+            '3': {
+                  b'1': [TAGS[24]],
+                  b'2': [TAGS[25]],
+                  b'3': [TAGS[24], TAGS[25]],
+                  b'4': [TAGS[26]],
+                  b'5': [TAGS[24], TAGS[26]],
+                  b'6': [TAGS[25], TAGS[26]],
+                  b'7': [TAGS[24], TAGS[25], TAGS[26]],
+                  b'8': [TAGS[27]],
+                  b'9': [TAGS[24], TAGS[27]],
+                  b'a': [TAGS[25], TAGS[27]],
+                  b'b': [TAGS[24], TAGS[25], TAGS[27]],
+                  b'c': [TAGS[26], TAGS[27]],
+                  b'd': [TAGS[24], TAGS[25], TAGS[27]],
+                  b'e': [TAGS[24], TAGS[26], TAGS[27]],
+                  b'f': [TAGS[24], TAGS[25], TAGS[26], TAGS[27]]
+                 },
+            '4': {
+                  b'1': [TAGS[20]],
+                  b'2': [TAGS[21]],
+                  b'3': [TAGS[20], TAGS[21]],
+                  b'4': [TAGS[22]],
+                  b'5': [TAGS[20], TAGS[22]],
+                  b'6': [TAGS[21], TAGS[22]],
+                  b'7': [TAGS[20], TAGS[21], TAGS[22]]
+                 },
+            '5': {
+                  b'1': [TAGS[16]],
+                  b'2': [TAGS[17]],
+                  b'3': [TAGS[16], TAGS[17]],
+                  b'4': [TAGS[18]],
+                  b'5': [TAGS[16], TAGS[18]],
+                  b'6': [TAGS[25], TAGS[26]],
+                  b'7': [TAGS[16], TAGS[17], TAGS[18]],
+                  b'8': [TAGS[19]],
+                  b'9': [TAGS[16], TAGS[19]],
+                  b'a': [TAGS[17], TAGS[19]],
+                  b'b': [TAGS[16], TAGS[17], TAGS[19]],
+                  b'c': [TAGS[18], TAGS[19]],
+                  b'd': [TAGS[16], TAGS[17], TAGS[19]],
+                  b'e': [TAGS[16], TAGS[18], TAGS[19]],
+                  b'f': [TAGS[16], TAGS[17], TAGS[18], TAGS[19]]
+                 },
+            '6': {
+                  b'1': [TAGS[12]],
+                  b'2': [TAGS[13]],
+                  b'3': [TAGS[12], TAGS[13]],
+                  b'4': [TAGS[14]],
+                  b'5': [TAGS[12], TAGS[14]],
+                  b'6': [TAGS[13], TAGS[14]],
+                  b'7': [TAGS[12], TAGS[13], TAGS[14]]
+                 },
+            '7': {
+                  b'1': [TAGS[8]],
+                  b'2': [TAGS[9]],
+                  b'3': [TAGS[8], TAGS[9]],
+                  b'4': [TAGS[10]],
+                  b'5': [TAGS[8], TAGS[10]],
+                  b'6': [TAGS[25], TAGS[26]],
+                  b'7': [TAGS[8], TAGS[9], TAGS[10]],
+                  b'8': [TAGS[11]],
+                  b'9': [TAGS[8], TAGS[11]],
+                  b'a': [TAGS[9], TAGS[11]],
+                  b'b': [TAGS[8], TAGS[9], TAGS[11]],
+                  b'c': [TAGS[10], TAGS[11]],
+                  b'd': [TAGS[8], TAGS[9], TAGS[11]],
+                  b'e': [TAGS[8], TAGS[10], TAGS[11]],
+                  b'f': [TAGS[8], TAGS[9], TAGS[10], TAGS[11]]
+                 },
+            '8': {
+                  b'1': [TAGS[4]],
+                  b'2': [TAGS[5]],
+                  b'3': [TAGS[4], TAGS[5]],
+                  b'4': [TAGS[6]],
+                  b'5': [TAGS[4], TAGS[6]],
+                  b'6': [TAGS[5], TAGS[6]],
+                  b'7': [TAGS[4], TAGS[5], TAGS[6]]
+                 },
+            '9': {
+                  b'1': [TAGS[0]],
+                  b'2': [TAGS[1]],
+                  b'3': [TAGS[0], TAGS[1]],
+                  b'4': [TAGS[2]],
+                  b'5': [TAGS[0], TAGS[2]],
+                  b'6': [TAGS[25], TAGS[26]],
+                  b'7': [TAGS[0], TAGS[1], TAGS[2]],
+                  b'8': [TAGS[3]],
+                  b'9': [TAGS[0], TAGS[3]],
+                  b'a': [TAGS[1], TAGS[3]],
+                  b'b': [TAGS[0], TAGS[1], TAGS[3]],
+                  b'c': [TAGS[2], TAGS[3]],
+                  b'd': [TAGS[0], TAGS[1], TAGS[3]],
+                  b'e': [TAGS[0], TAGS[2], TAGS[3]],
+                  b'f': [TAGS[0], TAGS[1], TAGS[2], TAGS[3]]
                 }
               }
+
 
 # Parameters do not currently contain the modulation routing parameters and are most likely
 # contributing to the bytes valued at 40 throughout the patch data. Will need to redo the entire
