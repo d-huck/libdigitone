@@ -2,8 +2,6 @@ from constants import TAG_LOOK, PARAM, PARAM_LOOK
 from binascii import hexlify, unhexlify
 import logging
 
-logging.basicConfig(format='%(asctime)s :: %(levelname)s :> %(message)s', level=logging.DEBUG)
-
 
 class Sound:
 
@@ -47,7 +45,7 @@ class Sound:
                 for byte in PARAM_LOOK[para].split():
                     param_data += self.data[int(byte, 16) - int(0x29)]
             else:
-               param_data = self.data[int(PARAM_LOOK[para], 16) - int(0x29)]
+                param_data = self.data[int(PARAM_LOOK[para], 16) - int(0x29)]
 
             logging.debug('{}: {}'.format(para, param_data))
 
@@ -62,17 +60,13 @@ class Sound:
                 param_data[para] = [self.data[int(PARAM_LOOK[para], 16) - int(0x29)]]
         return param_data
 
+    def param(self, parameter):
+        return self.data[int(PARAM_LOOK[parameter], 16) - int(0x29)]
+
     def name_to_string(self):
         name = unhexlify(b''.join(self.name)).decode('utf-8').strip('\x00')
         return name
 
 
 if __name__ == '__main__':
-    with open('../blank_patch.syx', 'rb') as sysex:
-        patches = hexlify(sysex.read())
-        patch = Sound(patches)
-        # print('Prefix:  {}'.format(patch.prefix))
-        print('Name:    {}'.format(patch.name_to_string()))
-        print('Tags:    {}'.format(patch.tag_list()))
-        print('Data:    {}'.format(patch.data))
-        print('EOM:     {}'.format(patch.eom))
+    pass

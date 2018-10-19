@@ -1,6 +1,6 @@
 from constants import SYSEX_BEGIN
 from binascii import hexlify
-
+import logging
 
 def parse(filename):
     with open(filename, 'rb') as file:
@@ -17,7 +17,6 @@ def parse(filename):
             for message in range(len(messages)):
                 messages[message] = [messages[message][i:i + 2] for i in range(0, len(messages[message]), 2)]
         else:
-            messages = messages[0]
-            messages = [messages[i:i + 2] for i in range(0, len(messages), 2)]
+            messages = [messages[0][i:i + 2] for i in range(0, len(messages[0]), 2)]
         
         return messages
