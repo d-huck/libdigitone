@@ -5,6 +5,19 @@ from binascii import hexlify, unhexlify
 class Sound:
 
     def __init__(self, patch):
+        """ Breaks a patch into it's component sections.
+
+        :param patch: Expects a single patch as a full sysex patch message.
+        """
+
+        # Check data type
+        if patch[672:676] != b'0249':
+            raise TypeError("This is not the correct patch size! Data is probably corrupt")
+
+        # Break the byte-string into byte array
+        patch = [patch[i:i+2] for i in range(0, len(patch), 2)]
+
+        # Separate the key component sections of the patch
         self.prefix = patch[:int(0x0A)]
         self.unspec = patch[int(0x0a):int(0x12)]
         self.tags = patch[int(0x12):int(0x18)]
@@ -22,11 +35,17 @@ class Sound:
 
         return _tags
 
-    @property
     def name_to_string(self):
-        name = b''.join(self.name).decode('utf-8').strip('\x00')
+        name = unhexlify(b''.join(self.name)).decode('utf-8').strip('\x00')
         return name
 
 
 if __name__ == '__main__':
-    pass
+    with open('blank_patch.syx', 'rb') as sysex:
+        patches = hexlify(sysex.read())
+        patch = Sound(patches)
+        print('Prefix:  {}'.format(patch.prefix))
+        print('Tags:    {}'.format(patch.tag_list()))
+        print('Name:    {}'.format(patch.name_to_string()))
+        print('Data:    {}'.format(patch.data))
+        print('EOM:     {}'.format(patch.eom))
