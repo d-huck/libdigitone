@@ -3,3 +3,4 @@
 __pycache__/
 venv/
 blank_patch.syx
+.DS_Store
