@@ -15,9 +15,6 @@ class Sound:
             print(patch[int(0x150):int(0x152)])
             raise TypeError("This is not the correct patch size! Data is probably corrupt")
 
-        # Break the byte-string into byte array
-        # patch = [patch[i:i+2] for i in range(0, len(patch), 2)]
-
         # Separate the key component sections of the patch
         self.prefix = patch[:int(0x0A)]
         self.unspec = patch[int(0x0a):int(0x12)]
