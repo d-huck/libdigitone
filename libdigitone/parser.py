@@ -19,6 +19,5 @@ def parse(filename):
         else:
             messages = messages[0]
             messages = [messages[i:i + 2] for i in range(0, len(messages), 2)]
-            print('hi')
         
         return messages
