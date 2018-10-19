@@ -36,6 +36,10 @@ class Sound:
 
         return _tags
 
+    # TODO: Rebuild parameter dictionary with relative locations
+    # TODO: Rebuild parameter dictionary with byte locations as lists for smoother iteration
+    # TODO: Ensure that parameter location lists are from least to greatest byte location
+
     def param_list(self):
         for para in PARAM:
             if len(PARAM_LOOK[para]) > 4:
@@ -46,6 +50,17 @@ class Sound:
                param_data = self.data[int(PARAM_LOOK[para], 16) - int(0x29)]
 
             logging.debug('{}: {}'.format(para, param_data))
+
+    def param_to_dict(self):
+        param_data = {}
+        for para in PARAM:
+            if len(PARAM_LOOK[para]) > 4:
+                param_data[para] = []
+                for byte in PARAM_LOOK[para].split():
+                    param_data[para].append(self.data[int(byte, 16) - int(0x29)])
+            else:
+                param_data[para] = [self.data[int(PARAM_LOOK[para], 16) - int(0x29)]]
+        return param_data
 
     def name_to_string(self):
         name = unhexlify(b''.join(self.name)).decode('utf-8').strip('\x00')

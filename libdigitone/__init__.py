@@ -11,4 +11,5 @@ if __name__ == '__main__':
     logging.debug('Name:    {}'.format(patch.name_to_string()))
     logging.debug('Tags:    {}'.format(patch.tag_list()))
     patch.param_list()
+    logging.debug('Data:    {}'.format(patch.param_to_dict()))
     logging.debug('EOM:     {}'.format(patch.eom))
