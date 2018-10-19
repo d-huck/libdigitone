@@ -1,5 +1,5 @@
 from constants import TAG_LOOK, PARAM, PARAM_LOOK
-from binascii import hexlify, unhexlify
+from binascii import unhexlify
 import logging
 
 
