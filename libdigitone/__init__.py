@@ -7,5 +7,5 @@ if __name__ == '__main__':
     patch = sound.Sound(sysex)
     print('Name:    {}'.format(patch.name_to_string()))
     print('Tags:    {}'.format(patch.tag_list()))
-    print('Data:    {}'.format(patch.data))
+    print('Data:    {}'.format(patch.param_list()))
     print('EOM:     {}'.format(patch.eom))

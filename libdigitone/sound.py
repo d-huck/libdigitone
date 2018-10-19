@@ -1,4 +1,4 @@
-from constants import TAG_LOOK
+from constants import TAG_LOOK, PARAM, PARAM_LOOK
 from binascii import hexlify, unhexlify
 
 
@@ -35,6 +35,16 @@ class Sound:
                 _tags = _tags + TAG_LOOK[str(i)][tag_msg[i]]
 
         return _tags
+
+    def param_list(self):
+        for para in PARAM:
+            print('{}       :'.format(para), end='')
+            if len(PARAM_LOOK[para]) > 4:
+                for byte in PARAM_LOOK[para].split():
+                    print(' {}'.format(self.data[int(byte, 16) - int(0x29)]), end='')
+                print()
+            else:
+                print(' {}'.format(self.data[int(PARAM_LOOK[para], 16) - int(0x29)]))
 
     def name_to_string(self):
         name = unhexlify(b''.join(self.name)).decode('utf-8').strip('\x00')
