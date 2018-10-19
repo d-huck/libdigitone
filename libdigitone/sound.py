@@ -1,4 +1,4 @@
-from constants import TAG_LOOKUP
+from constants import TAG_LOOK
 from binascii import hexlify, unhexlify
 
 
@@ -31,8 +31,8 @@ class Sound:
         _tags = []
 
         for i in range(len(tag_msg)):
-            if tag_msg[i] in TAG_LOOKUP[str(i)].keys():
-                _tags = _tags + TAG_LOOKUP[str(i)][tag_msg[i]]
+            if tag_msg[i] in TAG_LOOK[str(i)].keys():
+                _tags = _tags + TAG_LOOK[str(i)][tag_msg[i]]
 
         return _tags
 
