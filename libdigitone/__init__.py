@@ -1,11 +1,14 @@
 import parser
 import sound
+import logging
 
 if __name__ == '__main__':
+    # logging.basicConfig(format='%(asctime)s :: %(levelname)s :> %(message)s', level=logging.INFO)
+
     file = '../blank_patch.syx'
     sysex = parser.parse(file)
     patch = sound.Sound(sysex)
-    print('Name:    {}'.format(patch.name_to_string()))
-    print('Tags:    {}'.format(patch.tag_list()))
-    print('Data:    {}'.format(patch.param_list()))
-    print('EOM:     {}'.format(patch.eom))
+    logging.debug('Name:    {}'.format(patch.name_to_string()))
+    logging.debug('Tags:    {}'.format(patch.tag_list()))
+    patch.param_list()
+    logging.debug('EOM:     {}'.format(patch.eom))

@@ -1,5 +1,8 @@
 from constants import TAG_LOOK, PARAM, PARAM_LOOK
 from binascii import hexlify, unhexlify
+import logging
+
+logging.basicConfig(format='%(asctime)s :: %(levelname)s :> %(message)s', level=logging.DEBUG)
 
 
 class Sound:
@@ -12,7 +15,7 @@ class Sound:
 
         # Check data type
         if patch[int(0x150):int(0x152)] != [b'02', b'49']:
-            print(patch[int(0x150):int(0x152)])
+            logging.debug(patch[int(0x150):int(0x152)])
             raise TypeError("This is not the correct patch size! Data is probably corrupt")
 
         # Separate the key component sections of the patch
@@ -35,13 +38,14 @@ class Sound:
 
     def param_list(self):
         for para in PARAM:
-            print('{}       :'.format(para), end='')
             if len(PARAM_LOOK[para]) > 4:
+                param_data = b''
                 for byte in PARAM_LOOK[para].split():
-                    print(' {}'.format(self.data[int(byte, 16) - int(0x29)]), end='')
-                print()
+                    param_data += self.data[int(byte, 16) - int(0x29)]
             else:
-                print(' {}'.format(self.data[int(PARAM_LOOK[para], 16) - int(0x29)]))
+               param_data = self.data[int(PARAM_LOOK[para], 16) - int(0x29)]
+
+            logging.debug('{}: {}'.format(para, param_data))
 
     def name_to_string(self):
         name = unhexlify(b''.join(self.name)).decode('utf-8').strip('\x00')
