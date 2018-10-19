@@ -1,4 +1,5 @@
 from constants import SYSEX_BEGIN
+from binascii import hexlify
 
 
 def parse(filename):
@@ -12,7 +13,12 @@ def parse(filename):
             if len(message) > 20:
                 messages.append(SYSEX_BEGIN + message)
 
-        for message in range(len(messages)):
-            messages[message] = [messages[message][i:i + 2] for i in range(0, len(messages[message]), 2)]
+        if len(messages) > 1:
+            for message in range(len(messages)):
+                messages[message] = [messages[message][i:i + 2] for i in range(0, len(messages[message]), 2)]
+        else:
+            messages = messages[0]
+            messages = [messages[i:i + 2] for i in range(0, len(messages), 2)]
+            print('hi')
         
         return messages
