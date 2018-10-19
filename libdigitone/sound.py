@@ -44,12 +44,9 @@ class Sound:
         :return: human readable strings of the parameter values
         """
         for para in PARAM:
-            # if len(PARAM_LOOK[para]) > 4:
             param_data = b''
             for byte in PARAM_LOOK[para].split():
                 param_data += self.data[int(byte, 16)]
-            # else:
-            #     param_data = self.data[int(PARAM_LOOK[para], 16)]
 
             logging.debug('{}: {}'.format(para, param_data))
 
@@ -60,12 +57,10 @@ class Sound:
         """
         param_data = {}
         for para in PARAM:
-            # if len(PARAM_LOOK[para]) > 4:
             param_data[para] = []
             for byte in PARAM_LOOK[para]:
                 param_data[para].append(self.data[int(byte, 16)])
-            # else:
-            #     param_data[para] = [self.data[int(PARAM_LOOK[para], 16)]]
+
         return param_data
 
     def param(self, parameter):
