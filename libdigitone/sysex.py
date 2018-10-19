@@ -36,6 +36,12 @@ def parse(sysex):
 
     return messages
 
+# TODO: function to combine several sysex messages after processing
+
+
+def combine():
+    pass
+
 # TODO: request/send individual sysex messages to digitone
 
 
