@@ -14,7 +14,8 @@ class Sound:
         # Check data type
         if patch[int(0x150):int(0x152)] != [b'02', b'49']:
             logging.debug(patch[int(0x150):int(0x152)])
-            raise TypeError("This is not the correct patch size! Data is probably corrupt")
+            # raise TypeError("This is not the correct patch size! Data is probably corrupt")
+            pass
 
         # Separate the key component sections of the patch
         self.prefix = patch[:int(0x05)]

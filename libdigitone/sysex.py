@@ -46,6 +46,8 @@ def combine():
 
 # TODO: request/send individual sysex messages to digitone
 
+def request():
+    pass
 
 def listen():
     """
