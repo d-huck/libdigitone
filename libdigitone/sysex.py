@@ -1,6 +1,8 @@
 from constants import SYSEX_BEGIN
 from binascii import hexlify
 
+import mido
+
 
 def decode(filename):
     with open(filename, 'rb') as file:
@@ -45,9 +47,18 @@ def combine():
 # TODO: request/send individual sysex messages to digitone
 
 
-def request():
-    pass
+def listen():
+    inport = mido.open_input('Elektron Digitone Digitone in 1')
+    for msg in inport:
+        try:
+            if msg.type == 'sysex':
+                msg = msg.hex().split()
+                for i in range(len(msg)):
+                    msg[i] = bytes(msg[i], 'utf-8')
+                yield msg
 
+        except KeyboardInterrupt:
+            break
 
 def send():
     pass

@@ -17,7 +17,8 @@ class Sound:
             raise TypeError("This is not the correct patch size! Data is probably corrupt")
 
         # Separate the key component sections of the patch
-        self.prefix = patch[:int(0x0A)]
+        self.prefix = patch[:int(0x05)]
+        self.meta = patch[int(0x05):int(0x0a)]
         self.unspec = patch[int(0x0a):int(0x12)]
         self.tags = patch[int(0x12):int(0x18)]
         self.name = patch[int(0x18):int(0x29)]
