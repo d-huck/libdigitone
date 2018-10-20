@@ -1,6 +1,17 @@
-from constants import TAG_LOOK, PARAM, PARAM_LOOK
+from . import constants
 from binascii import unhexlify
 import logging
+
+# TODO: Pickle dictionaries and such
+#
+#       After the libraries get finalized in the doc, they should be pickled
+#       and opened as a dictionary where they are needed instead of holding them
+#       inside of a .py file, plaintext.
+
+TAG_LOOK = constants.TAG_LOOK
+TAGS = constants.TAGS
+PARAM_LOOK = constants.PARAM_LOOK
+PARAM = constants.PARAM
 
 
 class Sound:
@@ -14,8 +25,7 @@ class Sound:
         # Check data type
         if patch[int(0x150):int(0x152)] != [b'02', b'49']:
             logging.debug(patch[int(0x150):int(0x152)])
-            # raise TypeError("This is not the correct patch size! Data is probably corrupt")
-            pass
+            raise TypeError("This is not the correct patch size! Data is probably corrupt")
 
         # Separate the key component sections of the patch
         self.prefix = patch[:int(0x05)]
@@ -84,6 +94,9 @@ class Sound:
         """
         name = unhexlify(b''.join(self.name)).decode('utf-8').strip('\x00')
         return name
+
+    def monitor(self):
+        pass
 
 
 if __name__ == '__main__':

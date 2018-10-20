@@ -1,7 +1,10 @@
-from constants import SYSEX_BEGIN
+from . import constants
 from binascii import hexlify
 
 import mido
+
+# TODO: PICKLE THIS SHIT
+SYSEX_BEGIN = constants.SYSEX_BEGIN
 
 
 def decode(filename):
@@ -46,8 +49,16 @@ def combine():
 
 # TODO: request/send individual sysex messages to digitone
 
-def request():
-    pass
+
+def request(message, track=0):
+    outport = mido.open_output('Elektron Digitone Digitone out 1')
+    if message == 'patch':
+        msg_array = [int('0x00', 16), int('0x20', 16), int('0x3c', 16), int('0x0d', 16), int('0x00', 16),
+                     int('0x6B', 16), int('0x01', 16), int('0x01', 16), 0, int('0x00', 16),
+                     int('0x00', 16), int('0x00', 16), int('0x05', 16)]
+        msg = mido.Message('sysex', data=msg_array)
+        outport.send(msg)
+
 
 def listen():
     """
@@ -64,6 +75,7 @@ def listen():
         except KeyboardInterrupt:
             inport.close()
             break
+
 
 def send(messages):
     inport = mido.open_output('Elektron Digitone Digitone out 1')
