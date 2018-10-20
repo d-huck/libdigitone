@@ -48,17 +48,21 @@ def combine():
 
 
 def listen():
+    """
+
+    :return:
+    """
     inport = mido.open_input('Elektron Digitone Digitone in 1')
     for msg in inport:
         try:
             if msg.type == 'sysex':
-                msg = msg.hex().split()
-                for i in range(len(msg)):
-                    msg[i] = bytes(msg[i], 'utf-8')
+                msg = bytes(msg.hex(), 'utf-8').split()
                 yield msg
 
         except KeyboardInterrupt:
+            inport.close()
             break
 
-def send():
-    pass
+def send(messages):
+    inport = mido.open_output('Elektron Digitone Digitone out 1')
+
