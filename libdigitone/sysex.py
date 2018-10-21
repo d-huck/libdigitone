@@ -41,11 +41,13 @@ def parse(sysex):
 
     return messages
 
+
 # TODO: function to combine several sysex messages after processing
 
 
 def combine():
     pass
+
 
 # TODO: request/send individual sysex messages to digitone
 
@@ -80,3 +82,6 @@ def listen():
 def send(messages):
     inport = mido.open_output('Elektron Digitone Digitone out 1')
 
+
+if __name__ == '__main__':
+    pass
