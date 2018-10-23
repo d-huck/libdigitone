@@ -1,4 +1,4 @@
-from . import constants
+from .constants import *
 from binascii import unhexlify
 import logging
 
@@ -8,10 +8,6 @@ import logging
 #       and opened as a dictionary where they are needed instead of holding them
 #       inside of a .py file, plaintext.
 
-TAG_LOOK = constants.TAG_LOOK
-TAGS = constants.TAGS
-PARAM_LOOK = constants.PARAM_LOOK
-PARAM = constants.PARAM
 
 
 class Sound:
@@ -100,4 +96,4 @@ class Sound:
 
 
 if __name__ == '__main__':
-    pass
+    print(TAG_LOOK, TAGS, PARAM, PARAM_LOOK)

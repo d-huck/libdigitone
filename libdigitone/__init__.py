@@ -1,5 +1,5 @@
-from . import sound
-from . import sysex
+from .sound import *
+from .sysex import *
 
 
 if __name__ == '__main__':

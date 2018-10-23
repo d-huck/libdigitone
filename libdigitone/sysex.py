@@ -1,10 +1,10 @@
-from . import constants
+from .constants import *
 from binascii import hexlify
 
 import mido
 
 # TODO: PICKLE THIS SHIT
-SYSEX_BEGIN = constants.SYSEX_BEGIN
+# SYSEX_BEGIN = constants.SYSEX_BEGIN
 
 
 def decode(filename):
