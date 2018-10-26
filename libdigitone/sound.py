@@ -31,13 +31,13 @@ class Sound:
         self.data = patch[int(0x29):int(0x14e)]
         self.eom = patch[int(0x14e):]
 
-    # TODO: Fix broken tag_list function
-
+    @property
     def tag_list(self):
         """ Label the tags on a particular sound into human readable format
 
         :return: list of tags associated with the patch
         """
+
         tag_msg = b''.join(self.tags[0:1] + self.tags[2:]).decode('utf-8')
         _tags = []
 
@@ -53,6 +53,7 @@ class Sound:
 
         :return: human readable strings of the parameter values
         """
+
         for para in PARAM:
             param_data = b''
             for byte in PARAM_LOOK[para].split():
@@ -65,6 +66,7 @@ class Sound:
 
         :return: dictionary of the parameter values
         """
+
         param_data = {}
         for para in PARAM:
             param_data[para] = []
@@ -79,6 +81,7 @@ class Sound:
         :param parameter: which parameter to retrieve a value from
         :return: the value of an individual parameter
         """
+
         values = []
         for byte in PARAM_LOOK[parameter]:
             values.append(self.data[int(byte, 16)])
@@ -93,6 +96,7 @@ class Sound:
 
         :return: the name of a patch as a human readable string
         """
+
         name = unhexlify(b''.join(self.name)).decode('utf-8').strip('\x00')
         return name
 
