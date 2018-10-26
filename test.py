@@ -26,6 +26,8 @@ if args.listen:
 elif args.request:
     dt.sysex.request(args.request)
 
+# TODO: Write monitor script that will detect changed parameters
+
 else:
     message = dt.decode('blank_patch.syx')
     bytes_ = dt.parse(message)

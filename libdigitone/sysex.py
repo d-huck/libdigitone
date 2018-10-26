@@ -77,7 +77,7 @@ def combine(sysex):
     :return:
     """
 
-    # Check if the input is a list of list or simply a list
+    # Check if the input is a list of lists or simply a list
     if type(sysex[0]) == list:
         for i in range(len(sysex)):
             sysex[i] = b''.join(sysex[i])
@@ -102,6 +102,10 @@ def request(message, track=0):
         pass
     logging.debug('Port is opened!')
     if message == 'patch':
+
+        # TODO: Add this to constants.py
+        # TODO: Figure out what the requests are receiving back.
+
         msg_array = [int('0x00', 16), int('0x20', 16), int('0x3c', 16), int('0x0d', 16), int('0x00', 16),
                      int('0x6B', 16), int('0x01', 16), int('0x01', 16), 0, int('0x00', 16),
                      int('0x00', 16), int('0x00', 16), int('0x05', 16)]
