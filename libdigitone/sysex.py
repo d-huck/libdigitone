@@ -64,6 +64,11 @@ def parse(sysex):
 #       there is extra meta data that I cannot figure out how to
 #       parse away.
 
+#       Current methods may be preferable since there is an explicit
+#       method for each step of the process. Mido may just be dele-
+#       gated to simply handle real-time (with Bill Maher) sysex
+#       transfers.
+
 
 def combine(sysex):
     """ Combines list or list of lists of sysex bytes and combines them into a
