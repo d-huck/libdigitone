@@ -1,3 +1,5 @@
+# TODO: PICKLE THIS SHIT
+
 TAGS = (
         'KICK', 'SNAR', 'DEEP', 'BRAS', 'STRI', 'PERC', 'HHAT', 'CYMB', 'EVOL', 'EXPR',
         'BASS', 'LEAD', 'PAD', 'TXTR', 'CRD', 'SFX', 'ARP', 'METL', 'ACOU', 'ATMO',
@@ -122,7 +124,7 @@ TAG_LOOK = {
                 }
               }
 
-
+# TODO: Finish and check Parameter Mapping
 # Parameters do not currently contain the modulation routing parameters and are most likely
 # contributing to the bytes valued at 40 throughout the patch data. Will need to redo the entire
 # parameter dump file with the correct values.

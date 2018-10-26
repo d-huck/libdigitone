@@ -4,8 +4,6 @@ import logging
 
 import mido
 
-# TODO: PICKLE THIS SHIT
-
 
 def decode(filename):
     """ Decodes sysex file and converts to bytestring
