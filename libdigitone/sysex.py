@@ -1,5 +1,5 @@
 from .constants import *
-from binascii import hexlify
+from binascii import hexlify, unhexlify
 
 import mido
 
@@ -21,14 +21,17 @@ def decode(filename):
 # TODO: encode sysex data to send to digitone
 
 
-def encode(sysex, filename):
+def encode(sysex, filename='digi_out.syx'):
     """
 
     :param sysex: sysex byte string
     :param filename: desired output binary .syx file name
     """
-    pass
-    return
+    with open(filename, 'wb') as file:
+        sysex = unhexlify(sysex)
+        file.write(sysex)
+
+    file.close()
 
 
 def parse(sysex):
