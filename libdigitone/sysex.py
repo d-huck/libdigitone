@@ -1,5 +1,6 @@
 from .constants import *
 from binascii import hexlify, unhexlify
+import logging
 
 import mido
 
@@ -97,31 +98,43 @@ def request(message, track=0):
     :return: None
     """
     outport = mido.open_output('Elektron Digitone Digitone out 1')
+    while outport.closed:
+        pass
+    logging.debug('Port is opened!')
     if message == 'patch':
         msg_array = [int('0x00', 16), int('0x20', 16), int('0x3c', 16), int('0x0d', 16), int('0x00', 16),
                      int('0x6B', 16), int('0x01', 16), int('0x01', 16), 0, int('0x00', 16),
                      int('0x00', 16), int('0x00', 16), int('0x05', 16)]
         msg = mido.Message('sysex', data=msg_array)
         outport.send(msg)
+        outport.close()
 
 
 def listen():
     """ Listens for sysex messages from the digitone. Stays open as a loop
-
-        TODO: Currently does not exit gracefully. Need to find better way
+        NOTE: The Mido library can take up to a full second to connect to
+        the Digitone midi port.
 
     :return:
     """
     inport = mido.open_input('Elektron Digitone Digitone in 1')
-    for msg in inport:
-        try:
+    while inport.closed:
+        pass
+    logging.debug('Port is opened!')
+    try:
+        for msg in inport:
             if msg.type == 'sysex':
                 msg = bytes(msg.hex(), 'utf-8').split()
                 yield msg
+            pass
 
-        except KeyboardInterrupt:
-            inport.close()
-            break
+    except KeyboardInterrupt:
+        print()
+        logging.debug('Exiting Gracefully...')
+        inport.close()
+        while not inport.closed:
+            pass
+        logging.debug('Port Closed. Exiting...')
 
 # TODO: Write sysex send function to modify current workspace patch
 
