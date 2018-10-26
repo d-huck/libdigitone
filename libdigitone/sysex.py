@@ -132,6 +132,9 @@ def listen():
                 yield msg
             pass
 
+    # TODO: Change this exception. It works fine for prototyping but needs
+    #       a better way to exit for a library.
+
     except KeyboardInterrupt:
         print()
         logging.debug('Exiting Gracefully...')
