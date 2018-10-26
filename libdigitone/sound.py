@@ -33,7 +33,7 @@ class Sound:
         self.eom = patch[int(0x14e):]
 
     def tag_list(self):
-        """
+        """ Label the tags on a particular sound into human readable format
 
         :return: list of tags associated with the patch
         """
@@ -47,7 +47,8 @@ class Sound:
         return _tags
 
     def param_list(self):
-        """
+        """ Scan the parameter locations and return a human readable value
+            for each of the parameters.
 
         :return: human readable strings of the parameter values
         """
@@ -59,7 +60,7 @@ class Sound:
             logging.debug('{}: {}'.format(para, param_data))
 
     def param_to_dict(self):
-        """
+        """ Create a dictionary with all of the parameter values.
 
         :return: dictionary of the parameter values
         """
@@ -72,7 +73,7 @@ class Sound:
         return param_data
 
     def param(self, parameter):
-        """
+        """ Return the value of a single parameter.
 
         :param parameter: which parameter to retrieve a value from
         :return: the value of an individual parameter
@@ -84,15 +85,12 @@ class Sound:
         return values
 
     def name_to_string(self):
-        """
+        """ Convert the name section into a human readable string
 
         :return: the name of a patch as a human readable string
         """
         name = unhexlify(b''.join(self.name)).decode('utf-8').strip('\x00')
         return name
-
-    def monitor(self):
-        pass
 
 
 if __name__ == '__main__':
