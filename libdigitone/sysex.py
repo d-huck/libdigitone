@@ -100,7 +100,7 @@ def request(message, track=0):
     outport = mido.open_output('Elektron Digitone Digitone out 1')
     while outport.closed:
         pass
-    logging.debug('Port is opened!')
+    # logging.debug('Port is opened!')
     if message == 'patch':
 
         # TODO: Add this to constants.py
@@ -110,13 +110,13 @@ def request(message, track=0):
                      int('0x6B', 16), int('0x01', 16), int('0x01', 16), 0, int('0x00', 16),
                      int('0x00', 16), int('0x00', 16), int('0x05', 16)]
         msg = mido.Message('sysex', data=msg_array)
-        logging.debug('Requesting patch...')
+        # logging.debug('Requesting patch...')
         outport.send(msg)
-        logging.debug('Closing port to exit gracefully...')
+        # logging.debug('Closing port to exit gracefully...')
         outport.close()
         while not outport.closed:
             pass
-        logging.debug('Port Closed. Exiting...')
+        # logging.debug('Port Closed. Exiting...')
 
 
 def listen():

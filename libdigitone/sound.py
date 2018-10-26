@@ -9,7 +9,6 @@ import logging
 #       inside of a .py file, plaintext.
 
 
-
 class Sound:
 
     def __init__(self, patch):
@@ -83,6 +82,9 @@ class Sound:
             values.append(self.data[int(byte, 16)])
 
         return values
+
+    def param_(self, parameter):
+        pass
 
     def name_to_string(self):
         """ Convert the name section into a human readable string

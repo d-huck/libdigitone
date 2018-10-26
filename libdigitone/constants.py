@@ -139,7 +139,13 @@ PARAM = (
         'arp_offset06', 'arp_offset07', 'arp_offset08', 'arp_offset09','arp_offset10', 'arp_offset11', 'arp_offset12',
         'arp_offset13', 'arp_offset14','arp_offset15','arp_offset16', 'arp_length', 'arp_step01', 'arp_step02',
         'arp_step03', 'arp_step04', 'arp_step05', 'arp_step06', 'arp_step07', 'arp_step08', 'arp_step09', 'arp_step10',
-        'arp_step11', 'arp_step12', 'arp_step13', 'arp_step14', 'arp_step15', 'arp_step16'
+        'arp_step11', 'arp_step12', 'arp_step13', 'arp_step14', 'arp_step15', 'arp_step16', 'key_scale_a',
+        'key_scale_b1', 'key_scale_b2', 'filt_track', 'vel_vol', 'pitch_bend', 'octave', 'pb_dest1', 'pb_dest2',
+        'pb_dest3', 'pb_dest4', 'pb_amt1', 'pb_amt2', 'pb_amt3', 'pb_amt4', 'mod_dest1', 'mod_dest2', 'mod_dest3',
+        'mod_dest4', 'mod_amt1', 'mod_amt2', 'mod_amt3', 'mod_amt4', 'breath_dest1', 'breath_dest2', 'breath_dest3',
+        'breath_dest4', 'breath_amt1', 'breath_amt2', 'breath_amt3', 'breath_amt4', 'after_dest1', 'after_dest2',
+        'after_dest3', 'after_dest4', 'after_amt1', 'after_amt2', 'after_amt3', 'after_amt4'
+
         )
 
 PARAM_LOOK = {
@@ -170,21 +176,20 @@ PARAM_LOOK = {
                 'arp_step07': ['0xf3', '0x104'], 'arp_step08': ['0xf1', '0x104'], 'arp_step09': ['0xf2', '0x104'],
                 'arp_step10': ['0xf2', '0x104'], 'arp_step11': ['0xf2', '0x104'], 'arp_step12': ['0xf2', '0x104'],
                 'arp_step13': ['0xf2', '0x104'], 'arp_step14': ['0xf2', '0x104'], 'arp_step15': ['0xf2', '0x104'],
-                'arp_step16': ['0xf1', '0x104'], 'key_scal_a': ['0x107'], 'key_scale_b1': ['0x108'],
-                'key_scaling_b2': ['0x10a'], 'filt_track': ['0x10b'], 'vel_vol': ['0xbb'], 'pitch_bend': ['0x10d'],
-                'octave': ['0x10e'], 'pb_meta1': ['0xc7'], 'pb_meta2': ['0xca'], 'pb_meta3': ['0xcc'],
-                'pb_meta4': ['0xce'], 'pb_amt1': ['0xc1', '0xc6'], 'pb_amt2': ['0xc1', '0xc8'],
-                'pb_amt3': ['0xc9', '0xcb'], 'pb_amt4': ['0xc9', '0xcd'], 'mod_meta1': ['0xbe'],
-                'mod_meta2': ['0xc0'], 'mod_meta3': ['0xc3'], 'mod_meta4': ['0xc5'], 'mod_amt1': ['0xbd', '0xb9'],
-                'mod_amt2': ['0xb9', '0xbf'], 'mod_amt3': ['0xc1', '0xc2'], 'mod_amt4': ['0xc1', '0xc4']
+                'arp_step16': ['0xf1', '0x104'], 'key_scale_a': ['0x107'], 'key_scale_b1': ['0x108'],
+                'key_scale_b2': ['0x10a'], 'filt_track': ['0x10b'], 'vel_vol': ['0xbb'], 'pitch_bend': ['0x10d'],
+                'octave': ['0x10e'], 'pb_dest1': ['0xc7'], 'pb_dest2': ['0xca'], 'pb_dest3': ['0xcc'],
+                'pb_dest4': ['0xce'], 'pb_amt1': ['0xc1', '0xc6'], 'pb_amt2': ['0xc1', '0xc8'],
+                'pb_amt3': ['0xc9', '0xcb'], 'pb_amt4': ['0xc9', '0xcd'], 'mod_dest1': ['0xbe'],
+                'mod_dest2': ['0xc0'], 'mod_dest3': ['0xc3'], 'mod_dest4': ['0xc5'], 'mod_amt1': ['0xbd', '0xb9'],
+                'mod_amt2': ['0xb9', '0xbf'], 'mod_amt3': ['0xc1', '0xc2'], 'mod_amt4': ['0xc1', '0xc4'],
+                'breath_dest1': [], 'breath_dest2': [], 'breath_dest3': [], 'breath_dest4': [], 'breath_amt1': [],
+                'breath_amt2': [], 'breath_amt3': [], 'breath_amt4': [], 'after_dest1': [], 'after_dest2': [],
+                'after_dest3': [], 'after_dest4': [], 'after_amt1': [], 'after_amt2': [], 'after_amt3': [],
+                'after_amt4': []
+
             }
 
-# 'key_scale_a', 'key_scale_b1', 'key_scale_b2', 'filt_keytrack', 'velocity_vol', 'octave', 'pitchbend',
-# 'velocity_dest1', 'velocity_dest2', 'velocity_dest3', 'velocity_dest4', 'velocity_global', 'velocity_amt1',
-# 'velocity_amt2', 'velocity_amt3'. 'velocity_amt4', 'modwheel_dest1', 'modwheel_dest2', 'modwheel_dest3',
-# 'modwheel_dest4', 'modwheel_global', 'modwheel_amt1', 'modwheel_amt2', 'modwheel_amt3', modwheel_amt4',
-# 'breath_dest1', 'breath_dest2', breath_dest3', 'breath_dest4', 'breath_global', 'breath_amt1', 'breath_amt2',
-# 'breath_amt3', 'breath_amt4', 'after_dest1', 'after_dest2', 'after_dest3', 'after_dest4', 'after_global',
-# 'after_amt1', 'after_amt2', 'after_amt3', 'after_amt4'
+'breath_dest1', 'breath_dest2', 'breath_dest3', 'breath_dest4', 'breath_amt1', 'breath_amt2', 'breath_amt3', 'breath_amt4', 'after_dest1', 'after_dest2', 'after_dest3', 'after_dest4', 'after_amt1', 'after_amt2', 'after_amt3', 'after_amt4'
 
 SYSEX_BEGIN = b'f0'+b'00'+b'20'+b'3c'+b'0d'+b'00'+b'53'+b'01'+b'01'

@@ -10,7 +10,7 @@ parser.add_argument('-r', '--request', dest="request", action="store")
 
 args = parser.parse_args()
 
-logging.basicConfig(format='%(asctime)s :: %(levelname)s :> %(message)s', level=logging.INFO)
+logging.basicConfig(format='%(asctime)s :: %(levelname)s :> %(message)s', level=logging.DEBUG)
 
 if args.listen:
     for message in dt.sysex.listen():
@@ -31,7 +31,6 @@ elif args.request:
 elif args.monitor:
     for message in dt.sysex.listen():
         patch = dt.sound.Sound(message)
-        # print(patch.data)
         if 'patch_old' not in locals():
             patch_old = patch.data
         else:
@@ -44,10 +43,9 @@ elif args.monitor:
 
 
 else:
-    message = dt.decode('blank_patch.syx')
-    bytes_ = dt.parse(message)
-    logging.debug(bytes_)
-    patch = dt.Sound(bytes_)
+    sysex = dt.decode('data/factory.syx')
+    message = dt.parse(sysex)
+    patch = dt.Sound(message[0])
     logging.debug('Prefix:  {}'.format(patch.prefix))
     logging.debug('Meta:    {}'.format(patch.meta))
     logging.debug('Message: {}'.format(patch.meta[1]))
