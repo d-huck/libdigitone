@@ -4,7 +4,6 @@ from binascii import hexlify, unhexlify
 import mido
 
 # TODO: PICKLE THIS SHIT
-# SYSEX_BEGIN = constants.SYSEX_BEGIN
 
 
 def decode(filename):
@@ -18,11 +17,10 @@ def decode(filename):
         return sysex
 
 
-# TODO: encode sysex data to send to digitone
-
-
 def encode(sysex, filename='digi_out.syx'):
-    """
+    """ Encodes sysex data into an agreeable format for the digitone
+
+        TODO: Test this function
 
     :param sysex: sysex byte string
     :param filename: desired output binary .syx file name
