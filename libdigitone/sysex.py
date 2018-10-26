@@ -107,7 +107,11 @@ def request(message, track=0):
                      int('0x00', 16), int('0x00', 16), int('0x05', 16)]
         msg = mido.Message('sysex', data=msg_array)
         outport.send(msg)
+        logging.debug('Closing port to exit gracefully...')
         outport.close()
+        while not outport.closed:
+            pass
+        logging.debug('Port Closed. Exiting...')
 
 
 def listen():
