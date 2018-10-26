@@ -28,7 +28,6 @@ if args.listen:
 elif args.request:
     dt.sysex.request(args.request)
 
-# TODO: Write monitor script that will detect changed parameters
 elif args.monitor:
     for message in dt.sysex.listen():
         patch = dt.sound.Sound(message)
@@ -42,7 +41,6 @@ elif args.monitor:
         time.sleep(.01)
         dt.sysex.request('patch')
 
-
 else:
     sysex = dt.decode('data/factory.syx')
     message = dt.parse(sysex)
@@ -52,7 +50,7 @@ else:
         # logging.info('Meta:    {}'.format(patch.meta))
         # logging.info('Message: {}'.format(patch.meta[1]))
         logging.info('Name:    {}'.format(patch.name_to_string()))
-        logging.info('Tags:    {}'.format(patch.tag_list))
+        logging.info('Tags:    {}\n'.format(patch.tag_list))
         # logging.info('Data:    {}'.format(patch.param_to_dict()))
         # logging.info('B        {}'.format(patch.param('b')))
         # logging.info('EOM:     {}\n'.format(patch.eom))
