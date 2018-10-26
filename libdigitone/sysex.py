@@ -110,6 +110,7 @@ def request(message, track=0):
                      int('0x6B', 16), int('0x01', 16), int('0x01', 16), 0, int('0x00', 16),
                      int('0x00', 16), int('0x00', 16), int('0x05', 16)]
         msg = mido.Message('sysex', data=msg_array)
+        logging.debug('Requesting patch...')
         outport.send(msg)
         logging.debug('Closing port to exit gracefully...')
         outport.close()
