@@ -95,7 +95,12 @@ def request(message, track=0):
     :param track: Which track or pattern to request. Currently defaults to 0
     :return: None
     """
-    outport = mido.open_output('Elektron Digitone Digitone out 1')
+    try:
+        outport = mido.open_output('Elektron Digitone Digitone out 1')
+    except OSError:
+        logging.ERROR('Cannot find Digitone Ports. Is it connected? Exiting...')
+        exit()
+
     while outport.closed:
         pass
     # logging.debug('Port is opened!')
@@ -153,6 +158,7 @@ def listen():
         while not inport.closed:
             pass
         logging.debug('Port Closed. Exiting...')
+
 
 # TODO: Write sysex send function to modify current workspace patch
 

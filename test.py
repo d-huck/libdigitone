@@ -2,6 +2,7 @@ import libdigitone as dt
 import logging
 import argparse
 import time
+import threading
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-l', '--listen', action="store_true", help='Turns on verbose output')
@@ -10,19 +11,19 @@ parser.add_argument('-r', '--request', dest="request", action="store")
 
 args = parser.parse_args()
 
-logging.basicConfig(format='%(asctime)s :: %(levelname)s :> %(message)s', level=logging.DEBUG)
+logging.basicConfig(format='[ %(levelname)s ] :: > %(message)s', level=logging.DEBUG)
 
 if args.listen:
     for message in dt.sysex.listen():
         patch = dt.sound.Sound(message)
-        logging.debug('Prefix:  {}'.format(patch.prefix))
-        logging.debug('Meta:    {}'.format(patch.meta))
-        logging.debug('Message: {}'.format(patch.meta[1]))
-        logging.debug('Name:    {}'.format(patch.name_to_string()))
-        logging.debug('Tags:    {}'.format(patch.tag_list()))
-        logging.debug('Data:    {}'.format(patch.param_to_dict()))
-        logging.debug('B        {}'.format(patch.param('b')))
-        logging.debug('EOM:     {}\n'.format(patch.eom))
+        logging.info('Prefix:  {}'.format(patch.prefix))
+        logging.info('Meta:    {}'.format(patch.meta))
+        logging.info('Message: {}'.format(patch.meta[1]))
+        logging.info('Name:    {}'.format(patch.name_to_string()))
+        logging.info('Tags:    {}'.format(patch.tag_list()))
+        logging.info('Data:    {}'.format(patch.param_to_dict()))
+        logging.info('B        {}'.format(patch.param('b')))
+        logging.info('EOM:     {}\n'.format(patch.eom))
 
 elif args.request:
     dt.sysex.request(args.request)
@@ -46,11 +47,11 @@ else:
     sysex = dt.decode('data/factory.syx')
     message = dt.parse(sysex)
     patch = dt.Sound(message[0])
-    logging.debug('Prefix:  {}'.format(patch.prefix))
-    logging.debug('Meta:    {}'.format(patch.meta))
-    logging.debug('Message: {}'.format(patch.meta[1]))
-    logging.debug('Name:    {}'.format(patch.name_to_string()))
-    logging.debug('Tags:    {}'.format(patch.tag_list()))
-    logging.debug('Data:    {}'.format(patch.param_to_dict()))
-    logging.debug('B        {}'.format(patch.param('b')))
-    logging.debug('EOM:     {}\n'.format(patch.eom))
+    logging.info('Prefix:  {}'.format(patch.prefix))
+    logging.info('Meta:    {}'.format(patch.meta))
+    logging.info('Message: {}'.format(patch.meta[1]))
+    logging.info('Name:    {}'.format(patch.name_to_string()))
+    logging.info('Tags:    {}'.format(patch.tag_list()))
+    # logging.info('Data:    {}'.format(patch.param_to_dict()))
+    logging.info('B        {}'.format(patch.param('b')))
+    logging.info('EOM:     {}\n'.format(patch.eom))

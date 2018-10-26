@@ -31,6 +31,8 @@ class Sound:
         self.data = patch[int(0x29):int(0x14e)]
         self.eom = patch[int(0x14e):]
 
+    # TODO: Fix broken tag_list function
+
     def tag_list(self):
         """ Label the tags on a particular sound into human readable format
 
