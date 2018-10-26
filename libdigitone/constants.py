@@ -130,16 +130,16 @@ TAG_LOOK = {
 # parameter dump file with the correct values.
 
 PARAM = (
-        'algorithm', 'c', 'a', 'b', 'harm', 'dtun', 'fdbk', 'mix', 'a_attack', 'a_decay', 'a_end','a_level',
-        'b_attack', 'b_decay', 'b_end', 'b_level','a_delay', 'a_trig','a_reset', 'phase_reset', 'b_delay', 'b_trig',
-        'b_reset', 'filt_attack', 'filt_dec',  'filt_sustain', 'filt_release', 'filt1_freq', 'filt1_reso',
+        'algorithm', 'c', 'a', 'b', 'harm', 'dtun', 'fdbk', 'mix', 'a_attack', 'a_decay', 'a_end', 'a_level',
+        'b_attack', 'b_decay', 'b_end', 'b_level', 'a_delay', 'a_trig', 'a_reset', 'phase_reset', 'b_delay', 'b_trig',
+        'b_reset', 'filt_attack', 'filt_dec', 'filt_sustain', 'filt_release', 'filt1_freq', 'filt1_reso',
         'filt1_type', 'filt_env', 'filt2_base', 'filt2_width', 'amp_attack', 'amp_decay', 'amp_sustain', 'amp_release',
-        'drive','pan', 'vol', 'chorus', 'delay', 'reverb', 'amp_reset', 'lfo1_dest', 'lfo1_wave', 'lfo1_spd',
+        'drive', 'pan', 'vol', 'chorus', 'delay', 'reverb', 'amp_reset', 'lfo1_dest', 'lfo1_wave', 'lfo1_spd',
         'lfo1_depth', 'lfo2_dest', 'lfo2_wave', 'lfo2_spd', 'lfo2_depth', 'lfo1_mult', 'lfo1_fade', 'lfo1_phase',
-        'lfo1_mode', 'lfo2_mult',   'lfo2_fade', 'lfo2_phase', 'lfo2_mode', 'arp_toggle', 'arp_speed', 'arp_range',
+        'lfo1_mode', 'lfo2_mult', 'lfo2_fade', 'lfo2_phase', 'lfo2_mode', 'arp_toggle', 'arp_speed', 'arp_range',
         'arp_note_length', 'arp_offset01', 'arp_offset02', 'arp_offset03', 'arp_offset04', 'arp_offset05',
-        'arp_offset06', 'arp_offset07', 'arp_offset08', 'arp_offset09','arp_offset10', 'arp_offset11', 'arp_offset12',
-        'arp_offset13', 'arp_offset14','arp_offset15','arp_offset16', 'arp_length', 'arp_step01', 'arp_step02',
+        'arp_offset06', 'arp_offset07', 'arp_offset08', 'arp_offset09', 'arp_offset10', 'arp_offset11', 'arp_offset12',
+        'arp_offset13', 'arp_offset14', 'arp_offset15', 'arp_offset16', 'arp_length', 'arp_step01', 'arp_step02',
         'arp_step03', 'arp_step04', 'arp_step05', 'arp_step06', 'arp_step07', 'arp_step08', 'arp_step09', 'arp_step10',
         'arp_step11', 'arp_step12', 'arp_step13', 'arp_step14', 'arp_step15', 'arp_step16', 'key_scale_a',
         'key_scale_b1', 'key_scale_b2', 'filt_track', 'vel_vol', 'pitch_bend', 'octave', 'pb_dest1', 'pb_dest2',
@@ -189,9 +189,6 @@ PARAM_LOOK = {
                 'breath_amt2': [], 'breath_amt3': [], 'breath_amt4': [], 'after_dest1': [], 'after_dest2': [],
                 'after_dest3': [], 'after_dest4': [], 'after_amt1': [], 'after_amt2': [], 'after_amt3': [],
                 'after_amt4': []
-
             }
-
-'breath_dest1', 'breath_dest2', 'breath_dest3', 'breath_dest4', 'breath_amt1', 'breath_amt2', 'breath_amt3', 'breath_amt4', 'after_dest1', 'after_dest2', 'after_dest3', 'after_dest4', 'after_amt1', 'after_amt2', 'after_amt3', 'after_amt4'
 
 SYSEX_BEGIN = b'f0'+b'00'+b'20'+b'3c'+b'0d'+b'00'+b'53'+b'01'+b'01'
