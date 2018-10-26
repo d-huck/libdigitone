@@ -9,6 +9,4 @@ data/d_tones.syx
 data/haunted_hearts.syx
 data/rtfm.syx
 doc/.ipynb_checkpoints/
-__init__.pyc constants.pyc sound.pyc sysex.pyc
-__init__.pyc constants.pyc sound.pyc sysex.pyc
 *.pyc
