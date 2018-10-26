@@ -58,8 +58,20 @@ def parse(sysex):
 
 # TODO: function to combine several sysex messages after processing
 
+#       NOTE: Doing the mido thing may render using hexlify obsolete
+#       very quickly. Currently, mido returns a .syx file in an ext-
+#       remely odd fashion. While the type() returns it as a list,
+#       there is extra meta data that I cannot figure out how to
+#       parse away.
+
 
 def combine(sysex):
+    """ Combines list or list of lists of sysex bytes and combines them into a
+        byte string ready to send to digi
+
+    :param sysex: expects list or list of lists of sysex bytes
+    :return:
+    """
 
     # Check if the input is a list of list or simply a list
     if type(sysex[0]) == list:
@@ -108,9 +120,10 @@ def listen():
             inport.close()
             break
 
+# TODO: Write sysex send function to modify current workspace patch
 
-def send(messages):
-    inport = mido.open_output('Elektron Digitone Digitone out 1')
+# def send(messages, track=0):
+#     inport = mido.open_output('Elektron Digitone Digitone out 1')
 
 
 if __name__ == '__main__':
