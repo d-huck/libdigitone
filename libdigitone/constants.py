@@ -170,7 +170,13 @@ PARAM_LOOK = {
                 'arp_step07': ['0xf3', '0x104'], 'arp_step08': ['0xf1', '0x104'], 'arp_step09': ['0xf2', '0x104'],
                 'arp_step10': ['0xf2', '0x104'], 'arp_step11': ['0xf2', '0x104'], 'arp_step12': ['0xf2', '0x104'],
                 'arp_step13': ['0xf2', '0x104'], 'arp_step14': ['0xf2', '0x104'], 'arp_step15': ['0xf2', '0x104'],
-                'arp_step16': ['0xf1', '0x104']
+                'arp_step16': ['0xf1', '0x104'], 'key_scal_a': ['0x107'], 'key_scale_b1': ['0x108'],
+                'key_scaling_b2': ['0x10a'], 'filt_track': ['0x10b'], 'vel_vol': ['0xbb'], 'pitch_bend': ['0x10d'],
+                'octave': ['0x10e'], 'pb_meta1': ['0xc7'], 'pb_meta2': ['0xca'], 'pb_meta3': ['0xcc'],
+                'pb_meta4': ['0xce'], 'pb_amt1': ['0xc1', '0xc6'], 'pb_amt2': ['0xc1', '0xc8'],
+                'pb_amt3': ['0xc9', '0xcb'], 'pb_amt4': ['0xc9', '0xcd'], 'mod_meta1': ['0xbe'],
+                'mod_meta2': ['0xc0'], 'mod_meta3': ['0xc3'], 'mod_meta4': ['0xc5'], 'mod_amt1': ['0xbd', '0xb9'],
+                'mod_amt2': ['0xb9', '0xbf'], 'mod_amt3': ['0xc1', '0xc2'], 'mod_amt4': ['0xc1', '0xc4']
             }
 
 # 'key_scale_a', 'key_scale_b1', 'key_scale_b2', 'filt_keytrack', 'velocity_vol', 'octave', 'pitchbend',
