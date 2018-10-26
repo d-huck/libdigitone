@@ -59,13 +59,15 @@ def parse(sysex):
 # TODO: function to combine several sysex messages after processing
 
 
-def combine():
-    """ Takes a list of bytes for a sysex message and combines it,
-        opposite of parse()
+def combine(sysex):
 
-    :return: sysex message bytestring
-    """
-    pass
+    # Check if the input is a list of list or simply a list
+    if type(sysex[0]) == list:
+        for i in range(len(sysex)):
+            sysex[i] = b''.join(sysex[i])
+
+    sysex_out = b''.join(sysex)
+    return sysex_out
 
 
 # TODO: request/send individual sysex messages to digitone
