@@ -120,15 +120,23 @@ def request(message, track=0):
 
 def listen():
     """ Listens for sysex messages from the digitone. Stays open as a loop
-        NOTE: The Mido library can take up to a full second to connect to
-        the Digitone midi port.
+        NOTE: The MIDO library can take up to a full  two seconds to connect
+        to the Digitone midi port.
 
-    :return:
+        This function is designed for testing and prototyping the library
+        only. To exit the loop, a SIGINT must be sent to exit cleanly.
+
+    :return: messages that
     """
     inport = mido.open_input('Elektron Digitone Digitone in 1')
+
+    # The port may take a few seconds to open. The while loop stops
+    # the script while waiting to connect.
+
     while inport.closed:
         pass
     logging.debug('Port is opened!')
+
     try:
         for msg in inport:
             if msg.type == 'sysex':
