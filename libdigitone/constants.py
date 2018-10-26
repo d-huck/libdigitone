@@ -143,10 +143,11 @@ PARAM = (
         'arp_step03', 'arp_step04', 'arp_step05', 'arp_step06', 'arp_step07', 'arp_step08', 'arp_step09', 'arp_step10',
         'arp_step11', 'arp_step12', 'arp_step13', 'arp_step14', 'arp_step15', 'arp_step16', 'key_scale_a',
         'key_scale_b1', 'key_scale_b2', 'filt_track', 'vel_vol', 'pitch_bend', 'octave', 'pb_dest1', 'pb_dest2',
-        'pb_dest3', 'pb_dest4', 'pb_amt1', 'pb_amt2', 'pb_amt3', 'pb_amt4', 'mod_dest1', 'mod_dest2', 'mod_dest3',
-        'mod_dest4', 'mod_amt1', 'mod_amt2', 'mod_amt3', 'mod_amt4', 'breath_dest1', 'breath_dest2', 'breath_dest3',
-        'breath_dest4', 'breath_amt1', 'breath_amt2', 'breath_amt3', 'breath_amt4', 'after_dest1', 'after_dest2',
-        'after_dest3', 'after_dest4', 'after_amt1', 'after_amt2', 'after_amt3', 'after_amt4'
+        'pb_dest3', 'pb_dest4', 'pb_amt1', 'pb_amt2', 'pb_amt3', 'pb_amt4', 'vel_dest1', 'vel_dest2', 'vel_dest3',
+        'vel_dest4', 'vel_amt1', 'vel_amt2', 'vel_amt3', 'vel_amt4', 'mod_dest1', 'mod_dest2', 'mod_dest3', 'mod_dest4',
+        'mod_amt1', 'mod_amt2', 'mod_amt3', 'mod_amt4', 'breath_dest1', 'breath_dest2', 'breath_dest3', 'breath_dest4',
+        'breath_amt1', 'breath_amt2', 'breath_amt3', 'breath_amt4', 'after_dest1', 'after_dest2', 'after_dest3',
+        'after_dest4', 'after_amt1', 'after_amt2', 'after_amt3', 'after_amt4'
 
         )
 
@@ -174,7 +175,7 @@ PARAM_LOOK = {
                 'arp_offset07': ['0xf9', '0xfb'], 'arp_offset08': ['0xf9', '0xfc'], 'arp_offset09': ['0xf9', '0xfd'],
                 'arp_offset10': ['0xf9', '0xfe'], 'arp_offset11': ['0xf9', '0xff'], 'arp_offset12': ['0xf9', '0x100'],
                 'arp_offset13': ['0x101', '0x102'], 'arp_offset14': ['0x101', '0x103'],
-                'arp_offset15': ['0x101', '0x104'], 'arp_offset16': ['0x101', '0x104', '0x105'],
+                'arp_offset15': ['0x101', '0x104'], 'arp_offset16': ['0x101', '0x105'],
                 'arp_length': ['0xf0', '0x104'], 'arp_step01': ['0xf3'], 'arp_step02': ['0xf3'], 'arp_step03': ['0xf3'],
                 'arp_step04': ['0xf3'], 'arp_step05': ['0xf3'], 'arp_step06': ['0xf3'], 'arp_step07': ['0xf3'],
                 'arp_step08': ['0xf1'], 'arp_step09': ['0xf2'], 'arp_step10': ['0xf2'], 'arp_step11': ['0xf2'],
@@ -183,10 +184,12 @@ PARAM_LOOK = {
                 'filt_track': ['0x10b'], 'vel_vol': ['0xbb'], 'pitch_bend': ['0x10d'], 'octave': ['0x10e'],
                 'pb_dest1': ['0xc7'], 'pb_dest2': ['0xca'], 'pb_dest3': ['0xcc'], 'pb_dest4': ['0xce'],
                 'pb_amt1': ['0xc1', '0xc6'], 'pb_amt2': ['0xc1', '0xc8'], 'pb_amt3': ['0xc9', '0xcb'],
-                'pb_amt4': ['0xc9', '0xcd'], 'mod_dest1': ['0xbe'], 'mod_dest2': ['0xc0'], 'mod_dest3': ['0xc3'],
-                'mod_dest4': ['0xc5'], 'mod_amt1': ['0xbd', '0xb9'], 'mod_amt2': ['0xb9', '0xbf'],
-                'mod_amt3': ['0xc1', '0xc2'], 'mod_amt4': ['0xc1', '0xc4'], 'breath_dest1': ['0xda'],
-                'breath_dest2': ['0xdc'], 'breath_dest3': ['0xde'], 'breath_dest4': ['0xe0'],
+                'pb_amt4': ['0xc9', '0xcd'], 'vel_dest1': ['0xbe'], 'vel_dest2': ['0xc0'], 'vel_dest3': ['0xc3'],
+                'vel_dest4': ['0xc5'], 'vel_amt1': ['0xbd', '0xb9'], 'vel_amt2': ['0xb9', '0xbf'],
+                'vel_amt3': ['0xc1', '0xc2'], 'vel_amt4': ['0xc1', '0xc4'], 'mod_dest1': ['0xd0'],
+                'mod_dest2': ['0xd3'], 'mod_dest3': ['0xd5'], 'mod_dest4': ['0xd7'], 'mod_amt1': ['0xc9', '0xcf'],
+                'mod_amt2': ['0xd1', '0xd2'], 'mod_amt3': ['0xd1', '0xd4'], 'mod_amt4': ['0xd1', '0xd6'],
+                'breath_dest1': ['0xda'], 'breath_dest2': ['0xdc'], 'breath_dest3': ['0xde'], 'breath_dest4': ['0xe0'],
                 'breath_amt1': ['0xd1', '0xd8'], 'breath_amt2': ['0xd9', '0xdb'], 'breath_amt3': ['0xd9', '0xdd'],
                 'breath_amt4': ['0xd9', '0xdf'], 'after_dest1': ['0xe3'], 'after_dest2': ['0xe5'],
                 'after_dest3': ['0xe7'], 'after_dest4': ['0xea'], 'after_amt1': ['0xe1', '0xe2'],

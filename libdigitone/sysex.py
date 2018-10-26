@@ -132,31 +132,36 @@ def listen():
 
     :return: messages that
     """
-    inport = mido.open_input('Elektron Digitone Digitone in 1')
 
     # The port may take a few seconds to open. The while loop stops
     # the script while waiting to connect.
-
-    while inport.closed:
-        pass
-    logging.debug('Port is opened!')
-
-    try:
-        for msg in inport:
-            if msg.type == 'sysex':
-                msg = bytes(msg.hex(), 'utf-8').split()
-                yield msg
-
-    # TODO: Change this exception. It works fine for prototyping but needs
-    #       a better way to exit for a library.
-
-    except KeyboardInterrupt:
-        print()
-        logging.debug('Exiting Gracefully...')
-        inport.close()
-        while not inport.closed:
+    with mido.open_input('Elektron Digitone Digitone in 1') as inport:
+        while inport.closed:
             pass
-        logging.debug('Port Closed. Exiting...')
+        logging.debug('Port is opened!')
+
+        try:
+            for msg in inport:
+                if msg.type == 'sysex':
+                    msg = bytes(msg.hex(), 'utf-8').split()
+                    yield msg
+        except GeneratorExit:
+            logging.debug('Waiting for Port to close...')
+            inport.close()
+            while not inport.closed:
+                pass
+            logging.debug('Port Closed. Exiting...')
+
+        # TODO: Change this exception. It works fine for prototyping but needs
+        #       a better way to exit for a library.
+
+        # except KeyboardInterrupt:
+        #     print()
+        #     logging.debug('Exiting Gracefully...')
+        #     inport.close()
+        #     while not inport.closed:
+        #         pass
+        #     logging.debug('Port Closed. Exiting...')
 
 
 # TODO: Write sysex send function to modify current workspace patch
