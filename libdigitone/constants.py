@@ -185,10 +185,11 @@ PARAM_LOOK = {
                 'pb_amt3': ['0xc9', '0xcb'], 'pb_amt4': ['0xc9', '0xcd'], 'mod_dest1': ['0xbe'],
                 'mod_dest2': ['0xc0'], 'mod_dest3': ['0xc3'], 'mod_dest4': ['0xc5'], 'mod_amt1': ['0xbd', '0xb9'],
                 'mod_amt2': ['0xb9', '0xbf'], 'mod_amt3': ['0xc1', '0xc2'], 'mod_amt4': ['0xc1', '0xc4'],
-                'breath_dest1': [], 'breath_dest2': [], 'breath_dest3': [], 'breath_dest4': [], 'breath_amt1': [],
-                'breath_amt2': [], 'breath_amt3': [], 'breath_amt4': [], 'after_dest1': [], 'after_dest2': [],
-                'after_dest3': [], 'after_dest4': [], 'after_amt1': [], 'after_amt2': [], 'after_amt3': [],
-                'after_amt4': []
+                'breath_dest1': ['0xda'], 'breath_dest2': ['0xdc'], 'breath_dest3': ['0xde'], 'breath_dest4': ['0xe0'],
+                'breath_amt1': ['0xd1', '0xd8'], 'breath_amt2': ['0xd9', '0xdb'], 'breath_amt3': ['0xd9', '0xdd'],
+                'breath_amt4': ['0xd9', '0xdf'], 'after_dest1': ['0xe3'], 'after_dest2': ['0xe5'],
+                'after_dest3': ['0xe7'], 'after_dest4': ['0xea'], 'after_amt1': ['0xe1', '0xe2'],
+                'after_amt2': ['0xe1', '0xe4'], 'after_amt3': ['0xe1', '0xe6'], 'after_amt4': ['0xe1', '0xe8']
             }
 
 SYSEX_BEGIN = b'f0'+b'00'+b'20'+b'3c'+b'0d'+b'00'+b'53'+b'01'+b'01'

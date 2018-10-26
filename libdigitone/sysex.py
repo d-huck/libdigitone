@@ -146,7 +146,6 @@ def listen():
             if msg.type == 'sysex':
                 msg = bytes(msg.hex(), 'utf-8').split()
                 yield msg
-            pass
 
     # TODO: Change this exception. It works fine for prototyping but needs
     #       a better way to exit for a library.
