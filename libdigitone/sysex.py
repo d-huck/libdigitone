@@ -8,6 +8,11 @@ import mido
 
 
 def decode(filename):
+    """ Decodes sysex file and converts to bytestring
+
+    :param filename: expects binary .syx file from the digitone
+    :return: hexlified byte string representing binary file
+    """
     with open(filename, 'rb') as file:
         sysex = hexlify(file.read())
         return sysex
@@ -17,11 +22,17 @@ def decode(filename):
 
 
 def encode(sysex, filename):
+    """
+
+    :param sysex: sysex byte string
+    :param filename: desired output binary .syx file name
+    """
     pass
+    return
 
 
 def parse(sysex):
-    """
+    """ Takes a sysex message and parses it into a list of bytes
 
     :param sysex: sysex message to parse; expects a string
     :return: list of sysex messages, parsed into lists of individual bytes
@@ -46,6 +57,11 @@ def parse(sysex):
 
 
 def combine():
+    """ Takes a list of bytes for a sysex message and combines it,
+        opposite of parse()
+
+    :return: sysex message bytestring
+    """
     pass
 
 
@@ -53,6 +69,13 @@ def combine():
 
 
 def request(message, track=0):
+    """ Request a sysex dump from the Digitone
+
+    :param message: type of message to be required. Currently supports:
+                        patch
+    :param track: Which track or pattern to request. Currently defaults to 0
+    :return: None
+    """
     outport = mido.open_output('Elektron Digitone Digitone out 1')
     if message == 'patch':
         msg_array = [int('0x00', 16), int('0x20', 16), int('0x3c', 16), int('0x0d', 16), int('0x00', 16),
@@ -63,7 +86,9 @@ def request(message, track=0):
 
 
 def listen():
-    """
+    """ Listens for sysex messages from the digitone. Stays open as a loop
+
+        TODO: Currently does not exit gracefully. Need to find better way
 
     :return:
     """
