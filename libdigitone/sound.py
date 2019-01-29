@@ -54,6 +54,8 @@ class Sound:
         :return: human readable strings of the parameter values
         """
 
+        # TODO: Parsing of parameter data that uses 2 or three bytes
+
         for para in PARAM:
             param_data = b''
             for byte in PARAM_LOOK[para].split():
@@ -61,11 +63,13 @@ class Sound:
 
             logging.debug('{}: {}'.format(para, param_data))
 
+    @property
     def param_to_dict(self):
         """ Create a dictionary with all of the parameter values.
 
         :return: dictionary of the parameter values
         """
+        # TODO: Parsing of parameter data that uses 2 or three bytes
 
         param_data = {}
         for para in PARAM:
@@ -88,6 +92,7 @@ class Sound:
 
         return values
 
+    # TODO: Figure out what the fuck I was thinking here...
     def param_(self, parameter):
         pass
 

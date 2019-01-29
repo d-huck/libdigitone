@@ -72,7 +72,7 @@ def main():
             # logging.info('Message: {}'.format(patch.meta[1]))
             logging.info('Name:    {}'.format(patch.name_to_string()))
             logging.info('Tags:    {}'.format(patch.tag_list))
-            logging.info('Data:    {}\n'.format(patch.param_to_dict()))
+            logging.info('Data:    {}\n'.format(patch.param_to_dict))
             # logging.info('B        {}'.format(patch.param('b')))
             # logging.info('EOM:     {}\n'.format(patch.eom))
     

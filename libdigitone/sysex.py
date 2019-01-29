@@ -101,8 +101,10 @@ def request(message, track=0):
         logging.ERROR('Cannot find Digitone Ports. Is it connected? Exiting...')
         exit()
 
+    # wait for the outport to open up
     while outport.closed:
         pass
+
     # logging.debug('Port is opened!')
     if message == 'patch':
 
@@ -135,9 +137,13 @@ def listen():
 
     # The port may take a few seconds to open. The while loop stops
     # the script while waiting to connect.
+
     with mido.open_input('Elektron Digitone Digitone in 1') as inport:
+
+        # wait for the inport to open up
         while inport.closed:
             pass
+
         logging.debug('Port is opened!')
 
         try:
@@ -145,23 +151,23 @@ def listen():
                 if msg.type == 'sysex':
                     msg = bytes(msg.hex(), 'utf-8').split()
                     yield msg
-        except GeneratorExit:
-            logging.debug('Waiting for Port to close...')
-            inport.close()
-            while not inport.closed:
-                pass
-            logging.debug('Port Closed. Exiting...')
-
-        # TODO: Change this exception. It works fine for prototyping but needs
-        #       a better way to exit for a library.
-
-        # except KeyboardInterrupt:
-        #     print()
-        #     logging.debug('Exiting Gracefully...')
+        # except GeneratorExit:
+        #     logging.debug('Waiting for Port to close...')
         #     inport.close()
         #     while not inport.closed:
         #         pass
         #     logging.debug('Port Closed. Exiting...')
+
+        # TODO: Change this exception. It works fine for prototyping but needs
+        #       a better way to exit for a library.
+
+        except KeyboardInterrupt:
+            print()
+            logging.debug('Exiting Gracefully...')
+            inport.close()
+            while not inport.closed:
+                pass
+            logging.debug('Port Closed. Exiting...')
 
 
 # TODO: Write sysex send function to modify current workspace patch
