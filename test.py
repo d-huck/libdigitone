@@ -22,27 +22,30 @@ def setup():
 def main():
     if args.listen:
         try:
-            for message in dt.sysex.listen():
-                patch = dt.sound.Sound(message)
+            for message in dt.listen():
+                patch = dt.Sound(message)
                 # logging.info('Prefix:  {}'.format(patch.prefix))
                 # logging.info('Meta:    {}'.format(patch.meta))
                 # logging.info('Message: {}'.format(patch.meta[1]))
                 # logging.info('Name:    {}'.format(patch.name_to_string()))
                 # logging.info('Tags:    {}'.format(patch.tag_list))
-                # logging.info('Data:    {}'.format(patch.param_to_dict()))
+                logging.info('Data:      {}'.format(patch.param_to_dict))
                 logging.info('pb_amt1:   {}'.format(patch.param('pb_amt1')))
                 # logging.info('EOM:     {}\n'.format(patch.eom))
         except KeyboardInterrupt:
-            dt.sysex.listen().throw(GeneratorExit)
+            dt.listen().throw(GeneratorExit)
 
     elif args.request:
         while True:
-            dt.sysex.request(args.request)
+            dt.request(args.request)
             time.sleep(.01)
 
     elif args.monitor:
-        for message in dt.sysex.listen():
-            patch = dt.sound.Sound(message)
+        dt.request('patch')
+        for message in dt.listen():
+            dt.request('patch')
+            patch = dt.Sound(message)
+
             if 'patch_old' not in locals():
                 patch_old = patch.data
             else:
@@ -50,8 +53,8 @@ def main():
                     if patch.data[i] != patch_old[i]:
                         print('{}: {}'.format(hex(i), patch.data[i]))
                 patch_old = patch.data
-            time.sleep(.01)
-            # dt.sysex.request('patch')
+            time.sleep(.05)
+
 
     elif args.close:
         dt.sysex.listen().throw(KeyboardInterrupt)
@@ -72,7 +75,7 @@ def main():
             # logging.info('Message: {}'.format(patch.meta[1]))
             logging.info('Name:    {}'.format(patch.name_to_string()))
             logging.info('Tags:    {}'.format(patch.tag_list))
-            logging.info('Data:    {}\n'.format(patch.param_to_dict))
+            logging.info('Data:    {}'.format(patch.param_to_dict))
             # logging.info('B        {}'.format(patch.param('b')))
             # logging.info('EOM:     {}\n'.format(patch.eom))
     

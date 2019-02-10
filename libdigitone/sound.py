@@ -40,7 +40,6 @@ class Sound:
 
         tag_msg = b''.join(self.tags[0:1] + self.tags[2:]).decode('utf-8')
         _tags = []
-
         for i in range(len(tag_msg)):
             if tag_msg[i] in TAG_LOOK[str(i)].keys():
                 _tags = _tags + TAG_LOOK[str(i)][tag_msg[i]]
