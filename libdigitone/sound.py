@@ -91,10 +91,6 @@ class Sound:
 
         return values
 
-    # TODO: Figure out what the fuck I was thinking here...
-    def param_(self, parameter):
-        pass
-
     def name_to_string(self):
         """ Convert the name section into a human readable string
 
