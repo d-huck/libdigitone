@@ -2,7 +2,6 @@ from .constants import *
 from binascii import unhexlify
 import logging
 
-# TODO: Pickle dictionaries and such
 #
 #       After the libraries get finalized in the doc, they should be pickled
 #       and opened as a dictionary where they are needed instead of holding them
@@ -53,8 +52,6 @@ class Sound:
         :return: human readable strings of the parameter values
         """
 
-        # TODO: Parsing of parameter data that uses 2 or three bytes
-
         for para in PARAM:
             param_data = b''
             for byte in PARAM_LOOK[para].split():
@@ -71,6 +68,8 @@ class Sound:
         # TODO: Parsing of parameter data that uses 2 or three bytes
 
         param_data = {}
+        # TODO: the PARAM list seems a little unnecessary since I could iterate through PARAM_LOOK.keys()
+        # The only thing that PARAM gives me is an orderly display on the screen which might be irrelevant in a library.
         for para in PARAM:
             param_data[para] = []
             for byte in PARAM_LOOK[para]:

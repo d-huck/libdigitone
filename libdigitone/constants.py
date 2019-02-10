@@ -125,11 +125,6 @@ TAG_LOOK = {
                 }
               }
 
-# TODO: Finish and check Parameter Mapping
-# Parameters do not currently contain the modulation routing parameters and are most likely
-# contributing to the bytes valued at 40 throughout the patch data. Will need to redo the entire
-# parameter dump file with the correct values.
-
 PARAM = (
         'algorithm', 'c', 'a', 'b', 'harm', 'dtun', 'fdbk', 'mix', 'a_attack', 'a_decay', 'a_end', 'a_level',
         'b_attack', 'b_decay', 'b_end', 'b_level', 'a_delay', 'a_trig', 'a_reset', 'phase_reset', 'b_delay', 'b_trig',
