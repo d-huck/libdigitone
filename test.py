@@ -59,13 +59,13 @@ def main():
                     if patch.data[int(0x30)] == b'08':
                         number = (((2 * msb) + 1) - 128) + (decimal / 100)
                         # if number < 0:
-                        print('{}: {}\t{}: {}\t {}: {}\t\t {:.2f}'.format('0x25', patch.data[int(0x25)],
+                        print('{}: {}\t{}: {}\t {}: {}\t\t {:.2f}'.format('0x29', patch.data[int(0x29)],
                                                                           '0x2f', patch.data[int(0x2f)],
                                                                           '0x30', patch.data[int(0x30)],
                                                                           number))
                     else:
                         number = ((2 * msb) - 128) + (decimal / 100)
-                        print('{}: {}\t{}: {}\t {}: {}\t\t {:.2f}'.format('0x25', patch.data[int(0x25)],
+                        print('{}: {}\t{}: {}\t {}: {}\t\t {:.2f}'.format('0x29', patch.data[int(0x29)],
                                                                           '0x2f', patch.data[int(0x2f)],
                                                                           '0x30', patch.data[int(0x30)],
                                                                           number))
