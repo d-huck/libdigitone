@@ -55,19 +55,19 @@ def main():
             else:
                 if patch.data != patch_old:
                     decimal = int(((99 / 127) * int(patch.data[int(0x25)], 16)))
-                    msb = int(patch.data[int(0x24)], 16)
-                    if patch.data[int(0x21)] == b'08':
+                    msb = int(patch.data[int(0x2f)], 16)
+                    if patch.data[int(0x30)] == b'08':
                         number = (((2 * msb) + 1) - 128) + (decimal / 100)
                         # if number < 0:
                         print('{}: {}\t{}: {}\t {}: {}\t\t {:.2f}'.format('0x25', patch.data[int(0x25)],
-                                                                          '0x24', patch.data[int(0x24)],
-                                                                          '0x21', patch.data[int(0x21)],
+                                                                          '0x2f', patch.data[int(0x2f)],
+                                                                          '0x30', patch.data[int(0x30)],
                                                                           number))
                     else:
                         number = ((2 * msb) - 128) + (decimal / 100)
                         print('{}: {}\t{}: {}\t {}: {}\t\t {:.2f}'.format('0x25', patch.data[int(0x25)],
-                                                                          '0x24', patch.data[int(0x24)],
-                                                                          '0x21', patch.data[int(0x21)],
+                                                                          '0x2f', patch.data[int(0x2f)],
+                                                                          '0x30', patch.data[int(0x30)],
                                                                           number))
 
 
