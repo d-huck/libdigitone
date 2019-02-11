@@ -307,8 +307,8 @@ PARAM_LOOK = {
                 'lfo2_spd': [6, '0x1', '0x6', '0x7'],
 
                 # TODO: Figure out mapping for the following two sections
-                'lfo1_depth': ['0x21', '0x24', '0x25'],
-                'lfo2_depth': ['0x21', '0x26', '0x27'],
+                'lfo1_depth': [4, '0x21', '0x24', '0x25'],
+                'lfo2_depth': [6, '0x21', '0x26', '0x27'],
 
                 # Edge cases that must be handled separately
                 'b': [7, '0x29', '0x2f', '0x30'],  #

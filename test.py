@@ -54,19 +54,20 @@ def main():
                 patch_old = patch.data
             else:
                 if patch.data != patch_old:
-                    if patch.data[int(0x31)] == b'08':
-                        decimal = int(((50 / 127) * int(patch.data[int(0x35)], 16)) + 50)
-                        number = int(patch.data[int(0x34)], 16) + (decimal / 100)
-                        print('{}: {}\t{}: {}\t {}: {}\t\t {:.2f}'.format('0x35', patch.data[int(0x35)],
-                                                                          '0x34', patch.data[int(0x34)],
-                                                                          '0x31', patch.data[int(0x31)],
+                    decimal = int(((99 / 127) * int(patch.data[int(0x25)], 16)))
+                    msb = int(patch.data[int(0x24)], 16)
+                    if patch.data[int(0x21)] == b'08':
+                        number = (((2 * msb) + 1) - 128) + (decimal / 100)
+                        # if number < 0:
+                        print('{}: {}\t{}: {}\t {}: {}\t\t {:.2f}'.format('0x25', patch.data[int(0x25)],
+                                                                          '0x24', patch.data[int(0x24)],
+                                                                          '0x21', patch.data[int(0x21)],
                                                                           number))
                     else:
-                        decimal = int((50 / 127) * int(patch.data[int(0x35)], 16))
-                        number = int(patch.data[int(0x34)], 16) + (decimal / 100)
-                        print('{}: {}\t{}: {}\t {}: {}\t\t {:.2f}'.format('0x35', patch.data[int(0x35)],
-                                                                          '0x34', patch.data[int(0x34)],
-                                                                          '0x31', patch.data[int(0x31)],
+                        number = ((2 * msb) - 128) + (decimal / 100)
+                        print('{}: {}\t{}: {}\t {}: {}\t\t {:.2f}'.format('0x25', patch.data[int(0x25)],
+                                                                          '0x24', patch.data[int(0x24)],
+                                                                          '0x21', patch.data[int(0x21)],
                                                                           number))
 
 
@@ -74,8 +75,9 @@ def main():
             time.sleep(.01)
 
     elif args.parameter:
-        if args.parameter in dt.PARAM_LOOK.keys():
-            logging.debug("Listening for {}".format(args.parameter))
+        param = args.parameter
+        if param in dt.PARAM_LOOK.keys():
+            logging.debug("Listening for {}".format(param))
             dt.request('patch')
             for message in dt.listen():
                 patch = dt.Sound(message)
@@ -83,21 +85,61 @@ def main():
                     patch_old = patch.data
                 else:
                     if patch.data != patch_old:
-                        # print(len(dt.PARAM_LOOK[args.parameter]))
-                        if len(dt.PARAM_LOOK[args.parameter]) == 1:
-                            print('{}: {}'.format(args.parameter,
-                                                  int(patch.data[int(dt.PARAM_LOOK[args.parameter][0], 16)], 16)))
-                        #
-                        # elif len(dt.PARAM_LOOK[args.parameter]) == 3:
-                        #     pass
-                        #
-                        # elif len(dt.PARAM_LOOK[args.parameter]) == 4:
-                        #     pass
+
+                        if len(dt.PARAM_LOOK[param]) == 1:
+                            print('{}: {}'.format(param,
+                                                  int(patch.data[int(dt.PARAM_LOOK[param][0], 16)], 16)))
+
+                        elif len(dt.PARAM_LOOK[param]) == 3:
+                            neg_bit = dt.PARAM_LOOK[param][0]
+                            neg_byte = '{:08b}'.format(int(patch.data[int(dt.PARAM_LOOK[param][1], 16)], 16))
+                            value = int(patch.data[int(dt.PARAM_LOOK[param][2], 16)], 16)
+
+                            if neg_byte[neg_bit] == '0':
+                                print(param + ': ', value)
+                            else:
+                                print(param + ': ', value - 128)
+
+                        elif len(dt.PARAM_LOOK[param]) == 4:
+                            # TODO: refactor code. Check LFO first, then B as they are the outliers.
+                            #       since harm and
+                            flag_bit = dt.PARAM_LOOK[param][0]
+                            flag_byte = '{:08b}'.format(int(patch.data[int(dt.PARAM_LOOK[param][1], 16)], 16))
+                            msb_value = int(patch.data[int(dt.PARAM_LOOK[param][2], 16)], 16)
+                            lsb_value = int(patch.data[int(dt.PARAM_LOOK[param][3], 16)], 16)
+                            if param == 'harm':
+                                msb_value = msb_value - 63
+                                if flag_byte[flag_bit] == '0':
+                                    lsb_value = int((50 / 127) * lsb_value)
+                                    print('{:.2f}'.format(msb_value + (lsb_value / 100)))
+                                else:
+                                    lsb_value = int((50/ 127) * lsb_value + 50)
+                                    print('{:.2f}'.format(msb_value + (lsb_value / 100)))
+                            elif param == 'b':
+                                # TODO: figure out how to represent the 'b' parameter in a meaningful way
+                                print('lol good luck bro')
+                            elif 'lfo' in param:
+                                lsb_value = (100/127) * lsb_value
+                                if flag_byte[flag_bit] == '0':
+                                    msb_value = (msb_value * 2) - 128
+                                else:
+                                    msb_value = (msb_value * 2) - 127
+                                print('{:.2f}'.format(msb_value + (lsb_value / 100)))
+                            else:
+                                if flag_byte[flag_bit] == '0':
+                                    lsb_value = int((50 / 127) * lsb_value)
+                                    print('{:.2f}'.format(msb_value + (lsb_value / 100)))
+                                else:
+                                    lsb_value = int((50/ 127) * lsb_value + 50)
+                                    print('{:.2f}'.format(msb_value + (lsb_value / 100)))
+                        else:
+                            print('how the fuck did you even get here? None of the parameters should even have this'
+                                  'many byte locations. Check yo goddamn dictionary')
                     patch_old = patch.data
                 dt.request('patch')
                 time.sleep(0.05)
         else:
-            logging.error("Nah, {} is not a valid parameter.".format(args.parameter))
+            logging.error("Nah, {} is not a valid parameter.".format(param))
 
         dt.request('patch')
 
