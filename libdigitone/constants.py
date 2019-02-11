@@ -288,7 +288,7 @@ PARAM_LOOK = {
                 # Three Byte Parameters
                 # This is divided into three different parts.
 
-                # List structure: [ SENTINEL_BIT, SENTINEL_LOC, VALUE_MSB, VALUE_LSB]
+                # List structure: [ FLAG_BIT, FLAG_LOC, VALUE_MSB, VALUE_LSB]
                 # In the following parameters, the sentinal value is used to divide the LSB into two sections, 0-50
                 # and 51-99. This maps the value of the LSB from 0-127 to 0-50. The LSB goes after the decimal point as
                 # it is displayed on the screen of the digitone.
@@ -305,14 +305,17 @@ PARAM_LOOK = {
                 'reverb': [3, '0x99', '0x9b', '0x9c'],
                 'lfo1_spd': [4, '0x1', '0x4', '0x5'],
                 'lfo2_spd': [6, '0x1', '0x6', '0x7'],
+                'harm': [2, '0x31', '0x32', '0x33'],  # maps from -26 to 26. Subtract 63 from MSB
 
-                # TODO: Figure out mapping for the following two sections
+                # FLAG_BIT changes the MSB. If Formula is (2 * MSB) - 128. If MSB is high add 1 to the formula. LSB maps
+                # from 0 - 99. Not sure why the wouldn't just make the FLAG_BIT a negative sign. Seems much simpler
+
                 'lfo1_depth': [4, '0x21', '0x24', '0x25'],
                 'lfo2_depth': [6, '0x21', '0x26', '0x27'],
 
-                # Edge cases that must be handled separately
-                'b': [7, '0x29', '0x2f', '0x30'],  #
-                'harm': [2, '0x31', '0x32', '0x33']  # maps from -26 to 26
+                # TODO: B is some kind of goddamn edgelord and needs to be dealt with
+                'b': [7, '0x29', '0x2f', '0x30']
+
             }
 
 SYSEX_BEGIN = b'f0'+b'00'+b'20'+b'3c'+b'0d'+b'00'+b'53'+b'01'+b'01'
