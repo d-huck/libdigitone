@@ -317,7 +317,12 @@ PARAM_LOOK = {
                 #
                 # This is very annoying. 0x30 is LSB. The MSB and FLAG_BYTE are multipliers on top of it. The MSB counts
                 # from 0 to 2. Not sure of the mapping as of yet, but 0x29: 1 0x30: 5.00 / 1.00 on the Digitone. This
-                # appears to be a mapping of 0 - 63. However, a table of values will need to generated
+                # appears to be a mapping of 0 - 63. A table has been generated to test against below. A possible
+                # solution to this problem could be this formula:
+                #
+                # IF FLAG: (MSB * 255) + (LSB + 255);
+                # ELSE: (MSB * 255) + LSB.
+
                 'b': [7, '0x29', '0x2f', '0x30']
 
             }
