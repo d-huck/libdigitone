@@ -117,7 +117,19 @@ def main():
                                     print('{:.2f}'.format(msb_value + (lsb_value / 100)))
                             elif param == 'b':
                                 # TODO: figure out how to represent the 'b' parameter in a meaningful way
-                                print('lol good luck bro')
+
+                                # lsb_value = (64/127) * lsb_value
+                                msb_value = msb_value * 128
+                                if flag_byte[flag_bit] == '1':
+                                    lsb_value = int((lsb_value + 127) * (64/127))
+                                else:
+                                    lsb_value = int((64/127) * lsb_value)
+                                value = int(((msb_value) + lsb_value))
+                                # print(lsb_value, msb_value, value)
+                                print('{}, {}, {}, {}: {}'.format(flag_byte[-1], msb_value, lsb_value, value,
+                                                                  dt.PARAM_B[value]))
+
+
                             elif 'lfo' in param:
                                 lsb_value = (100/127) * lsb_value
                                 if flag_byte[flag_bit] == '0':
