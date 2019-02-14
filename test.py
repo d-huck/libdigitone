@@ -137,6 +137,7 @@ def main():
                                 else:
                                     msb_value = (msb_value * 2) - 127
                                 print('{:.2f}'.format(msb_value + (lsb_value / 100)))
+
                             else:
                                 if flag_byte[flag_bit] == '0':
                                     lsb_value = int((50 / 127) * lsb_value)

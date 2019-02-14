@@ -2,11 +2,6 @@ from .constants import *
 from binascii import unhexlify
 import logging
 
-#
-#       After the libraries get finalized in the doc, they should be pickled
-#       and opened as a dictionary where they are needed instead of holding them
-#       inside of a .py file, plaintext.
-
 
 class Sound:
 
@@ -45,6 +40,7 @@ class Sound:
 
         return _tags
 
+    # TODO: What exactly is this good for again?
     def param_list(self):
         """ Scan the parameter locations and return a human readable value
             for each of the parameters.
@@ -57,7 +53,7 @@ class Sound:
             for byte in PARAM_LOOK[para].split():
                 param_data += self.data[int(byte, 16)]
 
-            logging.debug('{}: {}'.format(para, param_data))
+            # logging.debug('{}: {}'.format(para, param_data))
 
     @property
     def param_to_dict(self):
@@ -65,30 +61,73 @@ class Sound:
 
         :return: dictionary of the parameter values
         """
-        # TODO: Parsing of parameter data that uses 2 or three bytes
 
         param_data = {}
-        # TODO: the PARAM list seems a little unnecessary since I could iterate through PARAM_LOOK.keys()
-        # The only thing that PARAM gives me is an orderly display on the screen which might be irrelevant in a library.
         for para in PARAM:
-            param_data[para] = []
-            for byte in PARAM_LOOK[para]:
-                param_data[para].append(self.data[int(byte, 16)])
+            param_data[para] = self.param(para)
 
         return param_data
 
-    def param(self, parameter):
+    @staticmethod
+    def param(param):
         """ Return the value of a single parameter.
 
-        :param parameter: which parameter to retrieve a value from
+        :param param: which parameter to retrieve a value from
         :return: the value of an individual parameter
         """
 
-        values = []
-        for byte in PARAM_LOOK[parameter]:
-            values.append(self.data[int(byte, 16)])
+        # for param in PARAM:
+        if len(PARAM_LOOK[param]) == 1:
+            return int(PARAM_LOOK[param][0], 16)
 
-        return values
+        elif len(PARAM_LOOK[param]) == 3:
+            neg_bit = PARAM_LOOK[param][0]
+            neg_byte = '{:08b}'.format(int(PARAM_LOOK[param][1], 16))
+            value = int(PARAM_LOOK[param][2], 16)
+            if neg_byte[neg_bit] == '0':
+                return value
+            else:
+                return value - 128
+
+        elif len(PARAM_LOOK[param]) == 4:
+            flag_bit = int(PARAM_LOOK[param][0], 16)
+            flag_byte = int(PARAM_LOOK[param][1], 16)
+            msb_value = int(PARAM_LOOK[param][2], 16)
+            lsb_value = int(PARAM_LOOK[param][3], 16)
+
+            if param == 'b':
+                msb_value = msb_value * 128
+                if flag_byte[flag_bit] == '1':
+                    lsb_value = int((lsb_value + 127) * (64 / 127))
+                else:
+                    lsb_value = int((64 / 127) * lsb_value)
+                return int(((msb_value) + lsb_value))
+
+            elif 'lfo' in param:
+                lsb_value = (100 / 127) * lsb_value
+                if flag_byte[flag_bit] == '0':
+                    msb_value = (msb_value * 2) - 128
+                else:
+                    msb_value = (msb_value * 2) - 127
+                return round(msb_value + (lsb_value/100),2)
+
+            elif para == 'harm':
+                msb_value = msb_value - 63
+                if flag_byte[flag_bit] == '0':
+                    lsb_value = int((50 / 127) * lsb_value)
+                    return round(msb_value + (lsb_value / 100))
+                else:
+                    lsb_value = int((50 / 127) * lsb_value + 50)
+                    return round(msb_value + (lsb_value / 100))
+
+            # every other 3-byte function
+            else:
+                if flag_byte[flag_bit] == '0':
+                    lsb_value = int((50 / 127) * lsb_value)
+                    print('{:.2f}'.format(msb_value + (lsb_value / 100)))
+                else:
+                    lsb_value = int((50 / 127) * lsb_value + 50)
+                    print('{:.2f}'.format(msb_value + (lsb_value / 100)))
 
     def name_to_string(self):
         """ Convert the name section into a human readable string
