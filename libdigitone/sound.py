@@ -109,25 +109,25 @@ class Sound:
                     msb_value = (msb_value * 2) - 128
                 else:
                     msb_value = (msb_value * 2) - 127
-                return round(msb_value + (lsb_value/100),2  )
+                return round(msb_value + (lsb_value/100), 2)
 
             elif para == 'harm':
                 msb_value = msb_value - 63
                 if flag_byte[flag_bit] == '0':
                     lsb_value = int((50 / 127) * lsb_value)
-                    return round(msb_value + (lsb_value / 100))
+                    return round(msb_value + (lsb_value / 100), 2)
                 else:
                     lsb_value = int((50 / 127) * lsb_value + 50)
-                    return round(msb_value + (lsb_value / 100))
+                    return round(msb_value + (lsb_value / 100), 2)
 
             # every other 3-byte function
             else:
                 if flag_byte[flag_bit] == '0':
                     lsb_value = int((50 / 127) * lsb_value)
-                    print('{:.2f}'.format(msb_value + (lsb_value / 100)))
+                    return round(msb_value + (lsb_value / 100), 2)
                 else:
                     lsb_value = int((50 / 127) * lsb_value + 50)
-                    print('{:.2f}'.format(msb_value + (lsb_value / 100)))
+                    return round(msb_value + (lsb_value / 100), 2)
 
     def name_to_string(self):
         """ Convert the name section into a human readable string
