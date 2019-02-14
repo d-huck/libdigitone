@@ -68,34 +68,33 @@ class Sound:
 
         return param_data
 
-    @staticmethod
-    def param(param):
+    def param(self, parameter):
         """ Return the value of a single parameter.
 
-        :param param: which parameter to retrieve a value from
+        :parameter: which parameter to retrieve a value from
         :return: the value of an individual parameter
         """
 
         # for param in PARAM:
-        if len(PARAM_LOOK[param]) == 1:
-            return int(PARAM_LOOK[param][0], 16)
+        if len(PARAM_LOOK[parameter]) == 1:
+            return int(self.data[int(PARAM_LOOK[parameter][0], 16)], 16)
 
-        elif len(PARAM_LOOK[param]) == 3:
-            neg_bit = PARAM_LOOK[param][0]
-            neg_byte = '{:08b}'.format(int(PARAM_LOOK[param][1], 16))
-            value = int(PARAM_LOOK[param][2], 16)
+        elif len(PARAM_LOOK[parameter]) == 3:
+            neg_bit = PARAM_LOOK[parameter][0]
+            neg_byte = '{:08b}'.format(int(self.data[int(PARAM_LOOK[parameter][1], 16)], 16))
+            value = int(self.data[int(PARAM_LOOK[parameter][2], 16)], 16)
             if neg_byte[neg_bit] == '0':
                 return value
             else:
                 return value - 128
+        # 3-byte parameters. 'b', 'lfo' and 'harm' behave differently than other functions
+        elif len(PARAM_LOOK[parameter]) == 4:
+            flag_bit = PARAM_LOOK[parameter][0]
+            flag_byte = '{:08b}'.format(int(self.data[int(PARAM_LOOK[parameter][1], 16)], 16))
+            msb_value = int(self.data[int(PARAM_LOOK[parameter][2], 16)], 16)
+            lsb_value = int(self.data[int(PARAM_LOOK[parameter][3], 16)], 16)
 
-        elif len(PARAM_LOOK[param]) == 4:
-            flag_bit = int(PARAM_LOOK[param][0], 16)
-            flag_byte = int(PARAM_LOOK[param][1], 16)
-            msb_value = int(PARAM_LOOK[param][2], 16)
-            lsb_value = int(PARAM_LOOK[param][3], 16)
-
-            if param == 'b':
+            if parameter == 'b':
                 msb_value = msb_value * 128
                 if flag_byte[flag_bit] == '1':
                     lsb_value = int((lsb_value + 127) * (64 / 127))
@@ -103,15 +102,19 @@ class Sound:
                     lsb_value = int((64 / 127) * lsb_value)
                 return int(((msb_value) + lsb_value))
 
-            elif 'lfo' in param:
+            elif 'lfo' in parameter:
                 lsb_value = (100 / 127) * lsb_value
                 if flag_byte[flag_bit] == '0':
                     msb_value = (msb_value * 2) - 128
                 else:
                     msb_value = (msb_value * 2) - 127
+<<<<<<< HEAD
                 return round(msb_value + (lsb_value/100),2  )
+=======
+                return round(msb_value + (lsb_value/100), 2)
+>>>>>>> 53c62c816981ce98f4564bf509e61fa135bc7a00
 
-            elif para == 'harm':
+            elif parameter == 'harm':
                 msb_value = msb_value - 63
                 if flag_byte[flag_bit] == '0':
                     lsb_value = int((50 / 127) * lsb_value)
@@ -124,10 +127,10 @@ class Sound:
             else:
                 if flag_byte[flag_bit] == '0':
                     lsb_value = int((50 / 127) * lsb_value)
-                    print('{:.2f}'.format(msb_value + (lsb_value / 100)))
+                    return round(msb_value + (lsb_value / 100))
                 else:
                     lsb_value = int((50 / 127) * lsb_value + 50)
-                    print('{:.2f}'.format(msb_value + (lsb_value / 100)))
+                    return round(msb_value + (lsb_value / 100))
 
     def name_to_string(self):
         """ Convert the name section into a human readable string
