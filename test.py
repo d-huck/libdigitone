@@ -76,6 +76,9 @@ def main():
 
     elif args.parameter:
         param = args.parameter
+
+    elif args.parameter:
+        param = args.parameter
         if param in dt.PARAM_LOOK.keys():
             logging.debug("Listening for {}".format(param))
             dt.request('patch')
@@ -185,11 +188,12 @@ def main():
         message = dt.parse(sysex)
         for msg in message:
             patch = dt.Sound(msg)
-            # logging.info('Prefix:  {}'.format(patch.prefix))
+            logging.info('Prefix:  {}'.format(patch.prefix))
             # logging.info('Meta:    {}'.format(patch.meta))
             # logging.info('Message: {}'.format(patch.meta[1]))
             logging.info('Name:    {}'.format(patch.name_to_string()))
             logging.info('Tags:    {}'.format(patch.tag_list))
+            # logging.info('DATA:    {}'.format(patch.))
             logging.info('Data:    {}'.format(patch.param_to_dict))
             # logging.info('B        {}'.format(patch.param('b')))
             # logging.info('EOM:     {}\n'.format(patch.eom))
