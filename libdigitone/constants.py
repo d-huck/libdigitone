@@ -1,5 +1,3 @@
-# TODO: PICKLE THIS SHIT
-
 TAGS = (
         'KICK', 'SNAR', 'DEEP', 'BRAS', 'STRI', 'PERC', 'HHAT', 'CYMB', 'EVOL', 'EXPR',
         'BASS', 'LEAD', 'PAD', 'TXTR', 'CRD', 'SFX', 'ARP', 'METL', 'ACOU', 'ATMO',
@@ -7,40 +5,6 @@ TAGS = (
         'MINE', 'FAV'
        )
 
-# TODO: Change TAG_LOOK to bit location lookup a la 2-byte parameters
-_TAGS = {'KICK': [7, '0x17'],
-         'SNAR': [6, '0x17'],
-         'DEEP': [5, '0x17'],
-         'BRAS': [4, '0x17'],
-         'STRI': [3, '0x17'],
-         'PERC': [2, '0x17'],
-         'HHAT': [1, '0x17'],
-         'CYMB': [5, '0x12'],
-         'EVOL': [7, '0x16'],
-         'EXPR': [6, '0x16'],
-         'BASS': [5, '0x16'],
-         'LEAD': [4, '0x16'],
-         'PAD':  [3, '0x16'],
-         'TXTR': [2, '0x16'],
-         'CRD':  [1, '0x16'],
-         'SFX':  [4, '0x12'],
-         'ARP':  [7, '0x15'],
-         'METL': [6, '0x15'],
-         'ACOU': [5, '0x15'],
-         'ATMO': [4, '0x15'],
-         'NOIS': [3, '0x15'],
-         'GLCH': [2, '0x15'],
-         'HARD': [1, '0x15'],
-         'SOFT': [3, '0x12'],
-         'DARK': [7, '0x14'],
-         'BRGT': [6, '0x14'],
-         'UNTG': [5, '0x14'],
-         'EPIC': [4, '0x14'],
-         'FAIL': [3, '0x14'],
-         'LOOP': [2, '0x14'],
-         'MINE': [1, '0x14'],
-         'FAV':  [2, '0x12']
-         }
 TAG_LOOK = {
             '0': {
                   '1': [TAGS[23]],
@@ -346,15 +310,7 @@ PARAM_LOOK = {
                 'lfo1_depth': [4, '0x21', '0x24', '0x25'],
                 'lfo2_depth': [6, '0x21', '0x26', '0x27'],
 
-                # TODO: B is some kind of goddamn edgelord and needs to be dealt with
-                #
-                # This is very annoying. 0x30 is LSB. The MSB and FLAG_BYTE are multipliers on top of it. The MSB counts
-                # from 0 to 2. Not sure of the mapping as of yet, but 0x29: 1 0x30: 5.00 / 1.00 on the Digitone. This
-                # appears to be a mapping of 0 - 63. A table has been generated to test against below. A possible
-                # solution to this problem could be this formula:
-                #
-                # IF FLAG: (MSB * 255) + (LSB + 255);
-                # ELSE: (MSB * 255) + LSB.
+                # LSB maps from 0 - 64. The FLAG_BIT doubles the LSB. MSB adds 128 to the total.
 
                 'b': [7, '0x29', '0x2f', '0x30']
 

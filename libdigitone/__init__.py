@@ -1,7 +1,6 @@
 from .sound import *
 from .sysex import *
 
-# TODO: Write proper docstring for the project
 """
 libdigitone
 

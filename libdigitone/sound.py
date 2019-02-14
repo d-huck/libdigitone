@@ -109,7 +109,7 @@ class Sound:
                     msb_value = (msb_value * 2) - 128
                 else:
                     msb_value = (msb_value * 2) - 127
-                return round(msb_value + (lsb_value/100),2)
+                return round(msb_value + (lsb_value/100),2  )
 
             elif para == 'harm':
                 msb_value = msb_value - 63
