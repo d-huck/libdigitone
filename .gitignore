@@ -12,3 +12,4 @@ doc/.ipynb_checkpoints/
 *.pyc
 /test2.py
 /test.py
+.env/
