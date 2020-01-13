@@ -1,3 +1,5 @@
+#!./.env/bin/python
+
 import libdigitone as dt
 import logging
 import argparse
@@ -18,22 +20,23 @@ def setup():
     global args
     args = parser.parse_args()
 
-    logging.basicConfig(format='[ %(levelname)s ] :: > %(message)s', level=logging.DEBUG)
+    logging.basicConfig(format='[ %(levelname)s ] :: > %(message)s', level=logging.INFO)
 
-
+def listen():
+    for message in dt.listen():
+        patch = dt.Sound(message)
+        # logging.info('Prefix:  {}'.format(patch.prefix))
+        # logging.info('Meta:    {}'.format(patch.meta))
+        # logging.info('Message: {}'.format(patch.meta[1]))
+        # logging.info('Name:    {}'.format(patch.name_to_string()))
+        # logging.info('Tags:    {}'.format(patch.tag_list))
+        logging.info('Data:    '
+                     '  {}'.format(patch.param('harm')))
+        # logging.info('EOM:     {}\n'.format(patch.eom))
 def main():
     if args.listen:
         try:
-            for message in dt.listen():
-                patch = dt.Sound(message)
-                # logging.info('Prefix:  {}'.format(patch.prefix))
-                # logging.info('Meta:    {}'.format(patch.meta))
-                # logging.info('Message: {}'.format(patch.meta[1]))
-                # logging.info('Name:    {}'.format(patch.name_to_string()))
-                # logging.info('Tags:    {}'.format(patch.tag_list))
-                logging.info('Data:    '
-                             '  {}'.format(patch.param('pb_amt1')))
-                # logging.info('EOM:     {}\n'.format(patch.eom))
+           listen()
         except KeyboardInterrupt:
             dt.listen().throw(GeneratorExit)
 
@@ -74,8 +77,8 @@ def main():
                 patch_old = patch.data
             time.sleep(.01)
 
-    elif args.parameter:
-        param = args.parameter
+    # elif args.parameter:
+    #     param = args.parameter
 
     elif args.parameter:
         param = args.parameter
@@ -160,6 +163,7 @@ def main():
         dt.request('patch')
 
     elif args.monitor:
+        logging.info('Monitoring...')
         dt.request('patch')
         for message in dt.listen():
             dt.request('patch')
@@ -172,7 +176,7 @@ def main():
                     if patch.data[i] != patch_old[i]:
                         print('{}: {}'.format(hex(i), patch.data[i]))
                 patch_old = patch.data
-            time.sleep(.05)
+            time.sleep(0.01)
 
     elif args.close:
         dt.sysex.listen().throw(KeyboardInterrupt)

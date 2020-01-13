@@ -10,3 +10,5 @@ data/haunted_hearts.syx
 data/rtfm.syx
 doc/.ipynb_checkpoints/
 *.pyc
+/test2.py
+/test.py
