@@ -144,6 +144,10 @@ PARAM = (
 
         )
 
+# NOTE: This dictionary lists the relative location of the bytes used rather than the absolute position of the bytes used for each parameter.
+#       The reason for this is the Sound class breaks each sysex message into it's relative parts. The data portion of each patch is from
+#       byte 0x29 to byte 0x14e. If translating this library to another language, please take note.
+
 PARAM_LOOK = {
                 'algorithm': ['0x28'],
                 'c': ['0x2b'],
@@ -312,13 +316,30 @@ PARAM_LOOK = {
 
                 # LSB maps from 0 - 64. The FLAG_BIT doubles the LSB. MSB adds 128 to the total.
 
-                'b': [7, '0x29', '0x2f', '0x30']
+                'b': [7, '0x29', '0x2f', '0x30'],
 
-            }
+                #TODO: Verify and test these offset parameters
+
+                'c_offset': [6, '0xa8', '0xa9', '0xaa'],
+                'a_offset': [4, '0xa9', '0xab', '0xac'],
+                'b1_offset': [3, '0xa9', '0xad', '0xae'],
+                'b2_offset': [1, '0xa9', '0xaf', '0xb0'],
+
+                # portamento settings work
+                'portamento': ['0xa4'],
+                'portamento_time': ['0xa6'],
+                'portamento_type': ['0x10f'],
+                'portamento_slope': ['0x112'],
+                'portamento_amt': ['0x10e'],
+                'portamento_style': ['0x110'],
+                'portamento_gating': ['0x113']
+}
 
 SYSEX_BEGIN = b'f0'+b'00'+b'20'+b'3c'+b'0d'+b'00'+b'53'+b'01'+b'01'
 
-# Tables for output
+# Reference table for human readable output of a few of the parameters. This is mostly for testing purposes though the reference
+# may come in handy.
+
 # TODO: tables for multi-switches, LFO Mult, LFO_Mode
 
 PARAM_C = [

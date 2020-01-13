@@ -105,7 +105,7 @@ def request(message, track=0):
     while outport.closed:
         pass
 
-    # logging.debug('Port is opened!')
+    logging.debug('Port is opened!')
     if message == 'patch':
 
         # TODO: Add this to constants.py
@@ -144,19 +144,19 @@ def listen():
         while inport.closed:
             pass
 
-        logging.debug('Port is opened!')
+        # logging.debug('Port is opened!')
 
         try:
             for msg in inport:
                 if msg.type == 'sysex':
                     msg = bytes(msg.hex(), 'utf-8').split()
                     yield msg
-        # except GeneratorExit:
-        #     logging.debug('Waiting for Port to close...')
-        #     inport.close()
-        #     while not inport.closed:
-        #         pass
-        #     logging.debug('Port Closed. Exiting...')
+        except GeneratorExit:
+            # logging.debug('Waiting for Port to close...')
+            inport.close()
+            while not inport.closed:
+                pass
+            # logging.debug('Port Closed. Exiting...')
 
         # TODO: Change this exception. It works fine for prototyping but needs
         #       a better way to exit for a library.

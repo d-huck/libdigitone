@@ -12,7 +12,7 @@ class Sound:
         """
 
         # Check data type
-        if patch[int(0x150):int(0x152)] != [b'02', b'49']:
+        if patch[int(0x14f):int(0x151)] != [b'02', b'48']:
             logging.debug(patch[int(0x150):int(0x152)])
             raise TypeError("This is not the correct patch size! Data is probably corrupt")
 
