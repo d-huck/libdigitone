@@ -180,6 +180,10 @@ PARAM = (
 
         )
 
+# NOTE: This dictionary lists the relative location of the bytes used rather than the absolute position of the bytes used for each parameter.
+#       The reason for this is the Sound class breaks each sysex message into it's relative parts. The data portion of each patch is from
+#       byte 0x29 to byte 0x14e. If translating this library to another language, please take note.
+
 PARAM_LOOK = {
                 'algorithm': ['0x28'],
                 'c': ['0x2b'],
@@ -377,7 +381,9 @@ PARAM_LOOK = {
 
 SYSEX_BEGIN = b'f0'+b'00'+b'20'+b'3c'+b'0d'+b'00'+b'53'+b'01'+b'01'
 
-# Tables for output
+# Reference table for human readable output of a few of the parameters. This is mostly for testing purposes though the reference
+# may come in handy.
+
 # TODO: tables for multi-switches, LFO Mult, LFO_Mode
 
 PARAM_C = [
